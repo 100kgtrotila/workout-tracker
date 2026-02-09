@@ -1,8 +1,8 @@
 from datetime import datetime
-from typing import List, Optional
-from sqlalchemy import ForeignKey, String, Integer, Float, DateTime, Enum as SQLEnum
+from typing import Optional
+
+from sqlalchemy import ForeignKey, String, DateTime
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-import enum
 
 from app.core.db import Base
 from app.modules.workout.enums import WorkoutStatus
