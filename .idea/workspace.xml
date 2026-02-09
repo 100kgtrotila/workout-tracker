@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2bb213e6-801d-4caa-a1c6-58409dd140b5" name="Changes" comment="Refactor database configuration to use dynamic `DATABASE_URL` generation from environment variables">
-      <change afterPath="$PROJECT_DIR$/app/modules/exercise/enums.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/modules/exercise/models.py" afterDir="false" />
+    <list default="true" id="2bb213e6-801d-4caa-a1c6-58409dd140b5" name="Changes" comment="Add `User` model with fields for user management&#10;&#10;- Introduced a `User` model under `app/modules/user/models.py`.">
+      <change afterPath="$PROJECT_DIR$/app/modules/workout/enums.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/modules/workout/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/modules/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/modules/user/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +46,9 @@
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="AISelfReview" />
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 3
@@ -121,7 +125,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1770666725355</updated>
-      <workItem from="1770666726393" duration="5255000" />
+      <workItem from="1770666726393" duration="5922000" />
     </task>
     <task id="LOCAL-00001" summary="Initial FastAPI project setup with `.gitignore`, dependencies, and basic configuration">
       <option name="closed" value="true" />
@@ -163,7 +167,23 @@
       <option name="project" value="LOCAL" />
       <updated>1770671115008</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Add `Exercise` model and `MuscleGroup` enum for exercise management">
+      <option name="closed" value="true" />
+      <created>1770672245385</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1770672245385</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Add `User` model with fields for user management&#10;&#10;- Introduced a `User` model under `app/modules/user/models.py`.">
+      <option name="closed" value="true" />
+      <created>1770672476292</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1770672476292</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -175,6 +195,8 @@
     <MESSAGE value="Add Docker support with Dockerfile and docker-compose&#10;&#10;- Created a `Dockerfile` for containerizing the application.&#10;- Added `docker-compose.yml` for orchestrating services (FastAPI app, PostgreSQL, Redis)." />
     <MESSAGE value="Update dependencies and implement asynchronous database setup&#10;&#10;- Added `asyncio` to dependencies for supporting asynchronous operations.&#10;- Implemented asynchronous database setup using `SQLAlchemy` with `AsyncSession` and `async_sessionmaker`." />
     <MESSAGE value="Refactor database configuration to use dynamic `DATABASE_URL` generation from environment variables" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor database configuration to use dynamic `DATABASE_URL` generation from environment variables" />
+    <MESSAGE value="Add `Exercise` model and `MuscleGroup` enum for exercise management" />
+    <MESSAGE value="Add `User` model with fields for user management&#10;&#10;- Introduced a `User` model under `app/modules/user/models.py`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add `User` model with fields for user management&#10;&#10;- Introduced a `User` model under `app/modules/user/models.py`." />
   </component>
 </project>

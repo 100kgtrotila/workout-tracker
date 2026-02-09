@@ -1,10 +1,9 @@
 import datetime
 
-from sqlalchemy import String, Enum as SQLEnum
+from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.core.db import Base
-from app.modules.exercise.enums import MuscleGroup
 
 
 class User(Base):
