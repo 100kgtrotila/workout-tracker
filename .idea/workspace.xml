@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2bb213e6-801d-4caa-a1c6-58409dd140b5" name="Changes" comment="Add configuration management and database setup  &#10;&#10;- Introduced `pydantic-settings` for environment-based configuration in `config.py`.  &#10;- Added placeholders for database configuration in `db.py`.  &#10;- Updated dependencies in `pyproject.toml` to include `pydantic-settings`.">
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+    <list default="true" id="2bb213e6-801d-4caa-a1c6-58409dd140b5" name="Changes" comment="Add Docker support with Dockerfile and docker-compose&#10;&#10;- Created a `Dockerfile` for containerizing the application.&#10;- Added `docker-compose.yml` for orchestrating services (FastAPI app, PostgreSQL, Redis).">
+      <change beforePath="$PROJECT_DIR$/app/core/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv.lock" beforeDir="false" afterPath="$PROJECT_DIR$/uv.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +81,7 @@
     <option name="spentUsd" value="0.0031475" />
   </component>
   <component name="RecapUselessUpdatesCounter">
-    <option name="suspendCountdown" value="6" />
+    <option name="suspendCountdown" value="5" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -121,7 +122,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1770666725355</updated>
-      <workItem from="1770666726393" duration="3028000" />
+      <workItem from="1770666726393" duration="3909000" />
     </task>
     <task id="LOCAL-00001" summary="Initial FastAPI project setup with `.gitignore`, dependencies, and basic configuration">
       <option name="closed" value="true" />
@@ -139,7 +140,15 @@
       <option name="project" value="LOCAL" />
       <updated>1770668902519</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Add Docker support with Dockerfile and docker-compose&#10;&#10;- Created a `Dockerfile` for containerizing the application.&#10;- Added `docker-compose.yml` for orchestrating services (FastAPI app, PostgreSQL, Redis).">
+      <option name="closed" value="true" />
+      <created>1770669978181</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1770669978181</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,6 +157,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial FastAPI project setup with `.gitignore`, dependencies, and basic configuration" />
     <MESSAGE value="Add configuration management and database setup  &#10;&#10;- Introduced `pydantic-settings` for environment-based configuration in `config.py`.  &#10;- Added placeholders for database configuration in `db.py`.  &#10;- Updated dependencies in `pyproject.toml` to include `pydantic-settings`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add configuration management and database setup  &#10;&#10;- Introduced `pydantic-settings` for environment-based configuration in `config.py`.  &#10;- Added placeholders for database configuration in `db.py`.  &#10;- Updated dependencies in `pyproject.toml` to include `pydantic-settings`." />
+    <MESSAGE value="Add Docker support with Dockerfile and docker-compose&#10;&#10;- Created a `Dockerfile` for containerizing the application.&#10;- Added `docker-compose.yml` for orchestrating services (FastAPI app, PostgreSQL, Redis)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Docker support with Dockerfile and docker-compose&#10;&#10;- Created a `Dockerfile` for containerizing the application.&#10;- Added `docker-compose.yml` for orchestrating services (FastAPI app, PostgreSQL, Redis)." />
   </component>
 </project>
