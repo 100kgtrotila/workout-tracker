@@ -4,10 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2bb213e6-801d-4caa-a1c6-58409dd140b5" name="Changes" comment="Add `User` model with fields for user management&#10;&#10;- Introduced a `User` model under `app/modules/user/models.py`.">
-      <change afterPath="$PROJECT_DIR$/app/modules/workout/enums.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/modules/workout/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/modules/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/modules/user/models.py" afterDir="false" />
+    <list default="true" id="2bb213e6-801d-4caa-a1c6-58409dd140b5" name="Changes" comment="Add `WorkoutExercise` and `WorkoutSet` models for detailed workout tracking&#10;&#10;- Introduced `WorkoutExercise` model in `app/modules/workout_exercises/models.py` to associate exercises with workouts.&#10;- Added `WorkoutSet` model in `app/modules/workout_sets/models.py` to track sets, reps, and weights for exercises.&#10;- Updated `Workout` model imports to optimize and remove unused dependencies.">
+      <change afterPath="$PROJECT_DIR$/app/modules/gym/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/modules/training/enums.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/modules/training/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/modules/training/schemas.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/modules/user/schemas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/modules/exercise/enums.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/modules/gym/enums.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/modules/exercise/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/modules/workout/enums.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/modules/workout/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/modules/workout_exercises/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/modules/workout_sets/models.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,6 +97,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\PyCharmProjects\workout-tracker\app\modules\gym" />
       <recent name="D:\PyCharmProjects\workout-tracker" />
       <recent name="D:\PyCharmProjects\workout-tracker\app" />
     </key>
@@ -125,7 +135,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1770666725355</updated>
-      <workItem from="1770666726393" duration="5922000" />
+      <workItem from="1770666726393" duration="7270000" />
     </task>
     <task id="LOCAL-00001" summary="Initial FastAPI project setup with `.gitignore`, dependencies, and basic configuration">
       <option name="closed" value="true" />
@@ -183,7 +193,23 @@
       <option name="project" value="LOCAL" />
       <updated>1770672476292</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Add `Workout` model and `WorkoutStatus` enum for workout management&#10;&#10;- Introduced a `Workout` model under `app/modules/workout/models.py`.&#10;- Created `WorkoutStatus` enum in `app/modules/workout/enums.py`.">
+      <option name="closed" value="true" />
+      <created>1770672901039</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1770672901039</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Add `WorkoutExercise` and `WorkoutSet` models for detailed workout tracking&#10;&#10;- Introduced `WorkoutExercise` model in `app/modules/workout_exercises/models.py` to associate exercises with workouts.&#10;- Added `WorkoutSet` model in `app/modules/workout_sets/models.py` to track sets, reps, and weights for exercises.&#10;- Updated `Workout` model imports to optimize and remove unused dependencies.">
+      <option name="closed" value="true" />
+      <created>1770673538283</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1770673538283</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,6 +223,8 @@
     <MESSAGE value="Refactor database configuration to use dynamic `DATABASE_URL` generation from environment variables" />
     <MESSAGE value="Add `Exercise` model and `MuscleGroup` enum for exercise management" />
     <MESSAGE value="Add `User` model with fields for user management&#10;&#10;- Introduced a `User` model under `app/modules/user/models.py`." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add `User` model with fields for user management&#10;&#10;- Introduced a `User` model under `app/modules/user/models.py`." />
+    <MESSAGE value="Add `Workout` model and `WorkoutStatus` enum for workout management&#10;&#10;- Introduced a `Workout` model under `app/modules/workout/models.py`.&#10;- Created `WorkoutStatus` enum in `app/modules/workout/enums.py`." />
+    <MESSAGE value="Add `WorkoutExercise` and `WorkoutSet` models for detailed workout tracking&#10;&#10;- Introduced `WorkoutExercise` model in `app/modules/workout_exercises/models.py` to associate exercises with workouts.&#10;- Added `WorkoutSet` model in `app/modules/workout_sets/models.py` to track sets, reps, and weights for exercises.&#10;- Updated `Workout` model imports to optimize and remove unused dependencies." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add `WorkoutExercise` and `WorkoutSet` models for detailed workout tracking&#10;&#10;- Introduced `WorkoutExercise` model in `app/modules/workout_exercises/models.py` to associate exercises with workouts.&#10;- Added `WorkoutSet` model in `app/modules/workout_sets/models.py` to track sets, reps, and weights for exercises.&#10;- Updated `Workout` model imports to optimize and remove unused dependencies." />
   </component>
 </project>
