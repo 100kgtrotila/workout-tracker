@@ -1,6 +1,5 @@
 import enum
 
-
 class MuscleGroup(str, enum.Enum):
     CHEST = "chest"
     BACK = "back"
