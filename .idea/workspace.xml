@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2bb213e6-801d-4caa-a1c6-58409dd140b5" name="Changes" comment="Initial FastAPI project setup with `.gitignore`, dependencies, and basic configuration">
-      <change afterPath="$PROJECT_DIR$/app/core/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/core/db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uv.lock" beforeDir="false" afterPath="$PROJECT_DIR$/uv.lock" afterDir="false" />
+    <list default="true" id="2bb213e6-801d-4caa-a1c6-58409dd140b5" name="Changes" comment="Add configuration management and database setup  &#10;&#10;- Introduced `pydantic-settings` for environment-based configuration in `config.py`.  &#10;- Added placeholders for database configuration in `db.py`.  &#10;- Updated dependencies in `pyproject.toml` to include `pydantic-settings`.">
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +23,7 @@
         <option value="FastAPI main" />
         <option value="FastAPI test_main" />
         <option value="Python Script" />
+        <option value="Dockerfile" />
       </list>
     </option>
   </component>
@@ -63,6 +62,7 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "ai.playground.ignore.import.keys.banner.in.settings": "true",
     "git-widget-placeholder": "master",
@@ -80,10 +80,11 @@
     <option name="spentUsd" value="0.0031475" />
   </component>
   <component name="RecapUselessUpdatesCounter">
-    <option name="suspendCountdown" value="7" />
+    <option name="suspendCountdown" value="6" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\PyCharmProjects\workout-tracker" />
       <recent name="D:\PyCharmProjects\workout-tracker\app" />
     </key>
   </component>
@@ -120,7 +121,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1770666725355</updated>
-      <workItem from="1770666726393" duration="1964000" />
+      <workItem from="1770666726393" duration="3028000" />
     </task>
     <task id="LOCAL-00001" summary="Initial FastAPI project setup with `.gitignore`, dependencies, and basic configuration">
       <option name="closed" value="true" />
@@ -130,7 +131,15 @@
       <option name="project" value="LOCAL" />
       <updated>1770667797904</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Add configuration management and database setup  &#10;&#10;- Introduced `pydantic-settings` for environment-based configuration in `config.py`.  &#10;- Added placeholders for database configuration in `db.py`.  &#10;- Updated dependencies in `pyproject.toml` to include `pydantic-settings`.">
+      <option name="closed" value="true" />
+      <created>1770668902519</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1770668902519</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,6 +147,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial FastAPI project setup with `.gitignore`, dependencies, and basic configuration" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial FastAPI project setup with `.gitignore`, dependencies, and basic configuration" />
+    <MESSAGE value="Add configuration management and database setup  &#10;&#10;- Introduced `pydantic-settings` for environment-based configuration in `config.py`.  &#10;- Added placeholders for database configuration in `db.py`.  &#10;- Updated dependencies in `pyproject.toml` to include `pydantic-settings`." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add configuration management and database setup  &#10;&#10;- Introduced `pydantic-settings` for environment-based configuration in `config.py`.  &#10;- Added placeholders for database configuration in `db.py`.  &#10;- Updated dependencies in `pyproject.toml` to include `pydantic-settings`." />
   </component>
 </project>
