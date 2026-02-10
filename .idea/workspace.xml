@@ -4,19 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2bb213e6-801d-4caa-a1c6-58409dd140b5" name="Changes" comment="Add `WorkoutExercise` and `WorkoutSet` models for detailed workout tracking&#10;&#10;- Introduced `WorkoutExercise` model in `app/modules/workout_exercises/models.py` to associate exercises with workouts.&#10;- Added `WorkoutSet` model in `app/modules/workout_sets/models.py` to track sets, reps, and weights for exercises.&#10;- Updated `Workout` model imports to optimize and remove unused dependencies.">
-      <change afterPath="$PROJECT_DIR$/app/modules/gym/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/modules/training/enums.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/modules/training/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/modules/training/schemas.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/modules/user/schemas.py" afterDir="false" />
+    <list default="true" id="2bb213e6-801d-4caa-a1c6-58409dd140b5" name="Changes" comment="Refactor module structure: consolidate workout-related models under `training` and exercise-related models under `gym` &#10;&#10;- Moved `Workout`, `WorkoutExercise`, and `WorkoutSet` models to `app/modules/training/models.py`. &#10;- Relocated `Exercise` model to `app/modules/gym/models.py`. &#10;- Updated imports and restructured enums accordingly. &#10;- Removed deprecated files and optimized relationships.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/modules/exercise/enums.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/modules/gym/enums.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/modules/exercise/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/modules/workout/enums.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/modules/workout/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/modules/workout_exercises/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/modules/workout_sets/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv.lock" beforeDir="false" afterPath="$PROJECT_DIR$/uv.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +15,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="7" />
+    <option name="cachedIndexableFilesCount" value="23" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -40,18 +31,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "100kgtrotila"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;100kgtrotila&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/100kgtrotila/workout-tracker.git",
-    "accountId": "0b2ef97b-3b6d-4491-b007-7fba663b7285"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/100kgtrotila/workout-tracker.git&quot;,
+    &quot;accountId&quot;: &quot;0b2ef97b-3b6d-4491-b007-7fba663b7285&quot;
   }
-}]]></component>
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -59,9 +50,9 @@
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="AISelfReview" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="39RlNgVG1gk4y1EQ4Kl3TncEQC3" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -76,6 +67,7 @@
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "ai.playground.ignore.import.keys.banner.in.settings": "true",
     "git-widget-placeholder": "master",
@@ -135,7 +127,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1770666725355</updated>
-      <workItem from="1770666726393" duration="7270000" />
+      <workItem from="1770666726393" duration="7282000" />
+      <workItem from="1770758845745" duration="610000" />
     </task>
     <task id="LOCAL-00001" summary="Initial FastAPI project setup with `.gitignore`, dependencies, and basic configuration">
       <option name="closed" value="true" />
@@ -209,7 +202,15 @@
       <option name="project" value="LOCAL" />
       <updated>1770673538283</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Refactor module structure: consolidate workout-related models under `training` and exercise-related models under `gym` &#10;&#10;- Moved `Workout`, `WorkoutExercise`, and `WorkoutSet` models to `app/modules/training/models.py`. &#10;- Relocated `Exercise` model to `app/modules/gym/models.py`. &#10;- Updated imports and restructured enums accordingly. &#10;- Removed deprecated files and optimized relationships.">
+      <option name="closed" value="true" />
+      <created>1770674269428</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1770674269428</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,6 +226,7 @@
     <MESSAGE value="Add `User` model with fields for user management&#10;&#10;- Introduced a `User` model under `app/modules/user/models.py`." />
     <MESSAGE value="Add `Workout` model and `WorkoutStatus` enum for workout management&#10;&#10;- Introduced a `Workout` model under `app/modules/workout/models.py`.&#10;- Created `WorkoutStatus` enum in `app/modules/workout/enums.py`." />
     <MESSAGE value="Add `WorkoutExercise` and `WorkoutSet` models for detailed workout tracking&#10;&#10;- Introduced `WorkoutExercise` model in `app/modules/workout_exercises/models.py` to associate exercises with workouts.&#10;- Added `WorkoutSet` model in `app/modules/workout_sets/models.py` to track sets, reps, and weights for exercises.&#10;- Updated `Workout` model imports to optimize and remove unused dependencies." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add `WorkoutExercise` and `WorkoutSet` models for detailed workout tracking&#10;&#10;- Introduced `WorkoutExercise` model in `app/modules/workout_exercises/models.py` to associate exercises with workouts.&#10;- Added `WorkoutSet` model in `app/modules/workout_sets/models.py` to track sets, reps, and weights for exercises.&#10;- Updated `Workout` model imports to optimize and remove unused dependencies." />
+    <MESSAGE value="Refactor module structure: consolidate workout-related models under `training` and exercise-related models under `gym` &#10;&#10;- Moved `Workout`, `WorkoutExercise`, and `WorkoutSet` models to `app/modules/training/models.py`. &#10;- Relocated `Exercise` model to `app/modules/gym/models.py`. &#10;- Updated imports and restructured enums accordingly. &#10;- Removed deprecated files and optimized relationships." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor module structure: consolidate workout-related models under `training` and exercise-related models under `gym` &#10;&#10;- Moved `Workout`, `WorkoutExercise`, and `WorkoutSet` models to `app/modules/training/models.py`. &#10;- Relocated `Exercise` model to `app/modules/gym/models.py`. &#10;- Updated imports and restructured enums accordingly. &#10;- Removed deprecated files and optimized relationships." />
   </component>
 </project>
