@@ -4,14 +4,18 @@ services:
   app:
     build: .
     container_name: workout_backend
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    command: /app/.venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
     ports:
       - "8000:8000"
     volumes:
       - .:/app
+      - venv_data:/app/.venv
     environment:
-      - DATABASE_URL=postgresql://user:password@db:5432/workout_db
-      - REDIS_URL=redis://redis:6379/0
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=workout_db
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
       - PYTHONPATH=/app
     depends_on:
       - db
@@ -42,3 +46,4 @@ services:
 volumes:
   postgres_data:
   redis_data:
+  venv_data:
