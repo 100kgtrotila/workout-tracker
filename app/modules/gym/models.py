@@ -15,5 +15,4 @@ class Exercise(Base):
     description: Mapped[str] = mapped_column(String(1000), nullable=True)
     muscle_group: Mapped[MuscleGroup] = mapped_column(SQLEnum(MuscleGroup))
 
-    # Зв'язок з тренуваннями
     workout_exercises: Mapped[List["WorkoutExercise"]] = relationship(back_populates="exercise")
