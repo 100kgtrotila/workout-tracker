@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2bb213e6-801d-4caa-a1c6-58409dd140b5" name="Changes" comment="Add Pydantic schemas for `Training` module&#10;&#10;- Introduced schemas for `Workout`, `WorkoutExercise`, and `WorkoutSet` in `schemas.py` for validation and serialization.&#10;- Updated dependencies (`email-validator`, `ruff`) in `pyproject.toml` and IDE configurations.">
-      <change afterPath="$PROJECT_DIR$/app/modules/gym/schemas.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/modules/gym/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/modules/gym/models.py" afterDir="false" />
+    <list default="true" id="2bb213e6-801d-4caa-a1c6-58409dd140b5" name="Changes" comment="Add Pydantic schemas for `Gym` module&#10;&#10;- Introduced schemas for `Exercise`, including `ExerciseBase`, `ExerciseCreate`, `ExerciseUpdate`, and `ExerciseResponse` in `schemas.py` for validation and serialization.&#10;- Updated `Exercise` model to refine relationships and remove unused comments.">
+      <change afterPath="$PROJECT_DIR$/app/modules/gym/service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +143,7 @@
       <updated>1770666725355</updated>
       <workItem from="1770666726393" duration="7282000" />
       <workItem from="1770758845745" duration="1160000" />
-      <workItem from="1771069312140" duration="10881000" />
+      <workItem from="1771069312140" duration="13311000" />
     </task>
     <task id="LOCAL-00001" summary="Initial FastAPI project setup with `.gitignore`, dependencies, and basic configuration">
       <option name="closed" value="true" />
@@ -289,7 +289,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771080324279</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Add Pydantic schemas for `Gym` module&#10;&#10;- Introduced schemas for `Exercise`, including `ExerciseBase`, `ExerciseCreate`, `ExerciseUpdate`, and `ExerciseResponse` in `schemas.py` for validation and serialization.&#10;- Updated `Exercise` model to refine relationships and remove unused comments.">
+      <option name="closed" value="true" />
+      <created>1771080942665</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1771080942665</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -314,7 +322,8 @@
     <MESSAGE value="Add IDE data source configuration and base schema model&#10;&#10;- Configured `.idea/dataSources.xml` for PostgreSQL `workout_db` connection in local development.&#10;- Introduced `CustomModel` in `schemas.py` with `ConfigDict` for `pydantic` configuration." />
     <MESSAGE value="Add Pydantic schemas for `User` module&#10;&#10;- Introduced `UserBase`, `UserCreate`, `UserUpdate`, and `UserResponse` schemas in `schemas.py` for user data validation and serialization." />
     <MESSAGE value="Add Pydantic schemas for `Training` module&#10;&#10;- Introduced schemas for `Workout`, `WorkoutExercise`, and `WorkoutSet` in `schemas.py` for validation and serialization.&#10;- Updated dependencies (`email-validator`, `ruff`) in `pyproject.toml` and IDE configurations." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Pydantic schemas for `Training` module&#10;&#10;- Introduced schemas for `Workout`, `WorkoutExercise`, and `WorkoutSet` in `schemas.py` for validation and serialization.&#10;- Updated dependencies (`email-validator`, `ruff`) in `pyproject.toml` and IDE configurations." />
+    <MESSAGE value="Add Pydantic schemas for `Gym` module&#10;&#10;- Introduced schemas for `Exercise`, including `ExerciseBase`, `ExerciseCreate`, `ExerciseUpdate`, and `ExerciseResponse` in `schemas.py` for validation and serialization.&#10;- Updated `Exercise` model to refine relationships and remove unused comments." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Pydantic schemas for `Gym` module&#10;&#10;- Introduced schemas for `Exercise`, including `ExerciseBase`, `ExerciseCreate`, `ExerciseUpdate`, and `ExerciseResponse` in `schemas.py` for validation and serialization.&#10;- Updated `Exercise` model to refine relationships and remove unused comments." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/workout_tracker$workout_tracker.coverage" NAME="workout-tracker Coverage Results" MODIFIED="1771069663216" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
