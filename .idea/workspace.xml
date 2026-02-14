@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2bb213e6-801d-4caa-a1c6-58409dd140b5" name="Changes" comment="Add Alembic integration and initial database migration&#10;&#10;- Configured Alembic for managing database migrations, including `alembic.ini` and `env.py` setup.&#10;- Added an initial migration with `User`, `Exercise`, `Workout`, `WorkoutExercise`, and `WorkoutSet` tables.">
-      <change afterPath="$PROJECT_DIR$/app/core/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/modules/gym/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/modules/training/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/modules/user/__init__.py" afterDir="false" />
+    <list default="true" id="2bb213e6-801d-4caa-a1c6-58409dd140b5" name="Changes" comment="Add Pydantic schemas for `User` module&#10;&#10;- Introduced `UserBase`, `UserCreate`, `UserUpdate`, and `UserResponse` schemas in `schemas.py` for user data validation and serialization.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/modules/training/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/modules/training/schemas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv.lock" beforeDir="false" afterPath="$PROJECT_DIR$/uv.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +71,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "ai.playground.ignore.import.keys.banner.in.settings": "true",
     "git-widget-placeholder": "master",
     "last_opened_file_path": "D:/PyCharmProjects/workout-tracker/app/modules",
@@ -79,7 +80,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "settings.editor.selected.configurable": "com.intellij.python.ruff.RuffConfigurable",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -90,10 +91,10 @@
 }]]></component>
   <component name="RecapSpentCounter">
     <option name="endsOfQuotaMs" value="1771408835515" />
-    <option name="spentUsd" value="0.03457075" />
+    <option name="spentUsd" value="0.08524325" />
   </component>
   <component name="RecapUselessUpdatesCounter">
-    <option name="suspendCountdown" value="2" />
+    <option name="suspendCountdown" value="0" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -144,7 +145,7 @@
       <updated>1770666725355</updated>
       <workItem from="1770666726393" duration="7282000" />
       <workItem from="1770758845745" duration="1160000" />
-      <workItem from="1771069312140" duration="3701000" />
+      <workItem from="1771069312140" duration="10266000" />
     </task>
     <task id="LOCAL-00001" summary="Initial FastAPI project setup with `.gitignore`, dependencies, and basic configuration">
       <option name="closed" value="true" />
@@ -258,7 +259,31 @@
       <option name="project" value="LOCAL" />
       <updated>1771070923110</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Add `__init__.py` files for `gym`, `training`, and `user` modules to organize package structure">
+      <option name="closed" value="true" />
+      <created>1771073707133</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1771073707133</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Add IDE data source configuration and base schema model&#10;&#10;- Configured `.idea/dataSources.xml` for PostgreSQL `workout_db` connection in local development.&#10;- Introduced `CustomModel` in `schemas.py` with `ConfigDict` for `pydantic` configuration.">
+      <option name="closed" value="true" />
+      <created>1771073932527</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1771073932527</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Add Pydantic schemas for `User` module&#10;&#10;- Introduced `UserBase`, `UserCreate`, `UserUpdate`, and `UserResponse` schemas in `schemas.py` for user data validation and serialization.">
+      <option name="closed" value="true" />
+      <created>1771074881559</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1771074881559</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -279,7 +304,10 @@
     <MESSAGE value="Update `.env` and Docker configuration&#10;&#10;- Introduced `.env` file for managing environment variables.&#10;- Updated `docker-compose.yml` to use `.env` for database configuration and added a volume for the Python virtual environment.&#10;- Replaced `psycopg2` with `psycopg2-binary` for simplified dependency management." />
     <MESSAGE value="Update dependencies and improve database integration&#10;&#10;- Upgraded `FastAPI` and `Alembic` dependencies to their latest versions.&#10;- Updated `created_at` field in the `User` model to use `server_default` with `func.now()` for accurate timestamp management.&#10;- Enhanced `.venv` setup in IDE configuration for improved project consistency." />
     <MESSAGE value="Add Alembic integration and initial database migration&#10;&#10;- Configured Alembic for managing database migrations, including `alembic.ini` and `env.py` setup.&#10;- Added an initial migration with `User`, `Exercise`, `Workout`, `WorkoutExercise`, and `WorkoutSet` tables." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Alembic integration and initial database migration&#10;&#10;- Configured Alembic for managing database migrations, including `alembic.ini` and `env.py` setup.&#10;- Added an initial migration with `User`, `Exercise`, `Workout`, `WorkoutExercise`, and `WorkoutSet` tables." />
+    <MESSAGE value="Add `__init__.py` files for `gym`, `training`, and `user` modules to organize package structure" />
+    <MESSAGE value="Add IDE data source configuration and base schema model&#10;&#10;- Configured `.idea/dataSources.xml` for PostgreSQL `workout_db` connection in local development.&#10;- Introduced `CustomModel` in `schemas.py` with `ConfigDict` for `pydantic` configuration." />
+    <MESSAGE value="Add Pydantic schemas for `User` module&#10;&#10;- Introduced `UserBase`, `UserCreate`, `UserUpdate`, and `UserResponse` schemas in `schemas.py` for user data validation and serialization." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Pydantic schemas for `User` module&#10;&#10;- Introduced `UserBase`, `UserCreate`, `UserUpdate`, and `UserResponse` schemas in `schemas.py` for user data validation and serialization." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/workout_tracker$workout_tracker.coverage" NAME="workout-tracker Coverage Results" MODIFIED="1771069663216" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
