@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2bb213e6-801d-4caa-a1c6-58409dd140b5" name="Changes" comment="Add Pydantic schemas for `Gym` module&#10;&#10;- Introduced schemas for `Exercise`, including `ExerciseBase`, `ExerciseCreate`, `ExerciseUpdate`, and `ExerciseResponse` in `schemas.py` for validation and serialization.&#10;- Updated `Exercise` model to refine relationships and remove unused comments.">
-      <change afterPath="$PROJECT_DIR$/app/modules/gym/service.py" afterDir="false" />
+    <list default="true" id="2bb213e6-801d-4caa-a1c6-58409dd140b5" name="Changes" comment="Add custom exceptions for `Core` module&#10;&#10;- Introduced `AppError`, `NotFoundError`, and `BadRequestError` in `exceptions.py` to standardize error handling across the application.">
+      <change afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/modules/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/modules/training/service.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -143,7 +145,7 @@
       <updated>1770666725355</updated>
       <workItem from="1770666726393" duration="7282000" />
       <workItem from="1770758845745" duration="1160000" />
-      <workItem from="1771069312140" duration="13311000" />
+      <workItem from="1771069312140" duration="19374000" />
     </task>
     <task id="LOCAL-00001" summary="Initial FastAPI project setup with `.gitignore`, dependencies, and basic configuration">
       <option name="closed" value="true" />
@@ -297,7 +299,39 @@
       <option name="project" value="LOCAL" />
       <updated>1771080942665</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Add CRUD service functions for `Gym` module&#10;&#10;- Implemented `create_exercise`, `get_all_exercises`, `get_exercise_by_id`, `update_exercise`, and `del_exercise` functions in `service.py` for managing `Exercise`. &#10;- Updated IDE workspace configuration.">
+      <option name="closed" value="true" />
+      <created>1771085727737</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1771085727737</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Add custom exceptions for `Training` module&#10;&#10;- Introduced custom exceptions `WorkoutNotFoundError`, `WorkoutExerciseNotFoundError`, `WorkoutSetNotFoundError`, and `WorkoutAlreadyCompleted` in `exceptions.py` to improve error handling.">
+      <option name="closed" value="true" />
+      <created>1771090239630</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1771090239630</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Add custom exceptions for `Training` module&#10;&#10;- Introduced custom exceptions `WorkoutNotFoundError`, `WorkoutExerciseNotFoundError`, `WorkoutSetNotFoundError`, and `WorkoutAlreadyCompleted` in `exceptions.py` to improve error handling.">
+      <option name="closed" value="true" />
+      <created>1771090243896</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1771090243896</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Add custom exceptions for `Core` module&#10;&#10;- Introduced `AppError`, `NotFoundError`, and `BadRequestError` in `exceptions.py` to standardize error handling across the application.">
+      <option name="closed" value="true" />
+      <created>1771090250019</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1771090250019</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -323,7 +357,10 @@
     <MESSAGE value="Add Pydantic schemas for `User` module&#10;&#10;- Introduced `UserBase`, `UserCreate`, `UserUpdate`, and `UserResponse` schemas in `schemas.py` for user data validation and serialization." />
     <MESSAGE value="Add Pydantic schemas for `Training` module&#10;&#10;- Introduced schemas for `Workout`, `WorkoutExercise`, and `WorkoutSet` in `schemas.py` for validation and serialization.&#10;- Updated dependencies (`email-validator`, `ruff`) in `pyproject.toml` and IDE configurations." />
     <MESSAGE value="Add Pydantic schemas for `Gym` module&#10;&#10;- Introduced schemas for `Exercise`, including `ExerciseBase`, `ExerciseCreate`, `ExerciseUpdate`, and `ExerciseResponse` in `schemas.py` for validation and serialization.&#10;- Updated `Exercise` model to refine relationships and remove unused comments." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Pydantic schemas for `Gym` module&#10;&#10;- Introduced schemas for `Exercise`, including `ExerciseBase`, `ExerciseCreate`, `ExerciseUpdate`, and `ExerciseResponse` in `schemas.py` for validation and serialization.&#10;- Updated `Exercise` model to refine relationships and remove unused comments." />
+    <MESSAGE value="Add CRUD service functions for `Gym` module&#10;&#10;- Implemented `create_exercise`, `get_all_exercises`, `get_exercise_by_id`, `update_exercise`, and `del_exercise` functions in `service.py` for managing `Exercise`. &#10;- Updated IDE workspace configuration." />
+    <MESSAGE value="Add custom exceptions for `Training` module&#10;&#10;- Introduced custom exceptions `WorkoutNotFoundError`, `WorkoutExerciseNotFoundError`, `WorkoutSetNotFoundError`, and `WorkoutAlreadyCompleted` in `exceptions.py` to improve error handling." />
+    <MESSAGE value="Add custom exceptions for `Core` module&#10;&#10;- Introduced `AppError`, `NotFoundError`, and `BadRequestError` in `exceptions.py` to standardize error handling across the application." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add custom exceptions for `Core` module&#10;&#10;- Introduced `AppError`, `NotFoundError`, and `BadRequestError` in `exceptions.py` to standardize error handling across the application." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/workout_tracker$workout_tracker.coverage" NAME="workout-tracker Coverage Results" MODIFIED="1771069663216" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
