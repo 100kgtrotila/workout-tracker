@@ -2,7 +2,7 @@ from dataclasses import Field
 from datetime import datetime
 from typing import Optional
 
-from pydantic import PositiveInt,EmailStr
+from pydantic import PositiveInt, EmailStr, BaseModel
 
 from app.core.schemas import CustomModel
 
@@ -20,3 +20,10 @@ class UserResponse(CustomModel):
     id: PositiveInt
     created_at: datetime
 
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+
+class TokenData(BaseModel):
+    username: str | None = None
