@@ -4,9 +4,14 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
-from app.modules.training.exceptions import WorkoutNotFoundError
+from app.modules.training.exceptions import (
+    WorkoutNotFoundError,
+    WorkoutSetNotFoundError,
+    WorkoutExerciseNotFoundError,
+)
 from app.modules.training.models import Workout, WorkoutExercise, WorkoutSet
-from app.modules.training.schemas import WorkoutCreate, WorkoutUpdate
+from app.modules.training.schemas import WorkoutCreate, WorkoutSetUpdate, WorkoutUpdate, WorkoutSetCreate, \
+    WorkoutExerciseCreate, WorkoutExerciseUpdate
 
 
 async def get_workout_by_id(session: AsyncSession, workout_id: int, user_id: int) -> Workout:
@@ -31,7 +36,7 @@ async def get_user_workouts(session: AsyncSession, user_id: int) -> List[Workout
         select(Workout)
         .options(selectinload(Workout.exercises).selectinload(WorkoutExercise.sets))
         .where(Workout.user_id==user_id)
-        .ordery_by(Workout.scheduled_at.desc())
+        .order_by(Workout.scheduled_at.desc())
     )
 
     result = await session.execute(query)
@@ -74,6 +79,87 @@ async def update_workout_info(session: AsyncSession, db_workout: Workout, update
 async def del_workout(session: AsyncSession, db_workout: Workout) -> None:
     await session.delete(db_workout)
     await session.commit()
+
+
+
+#---------WORK OUT SETS
+async def get_workout_set_by_id(
+    session: AsyncSession, workout_set_id: int
+) -> WorkoutSet:
+    db_workout_set = await session.get(WorkoutSet, workout_set_id)
+
+    if not db_workout_set:
+        raise WorkoutSetNotFoundError(workout_set_id)
+
+    return db_workout_set
+
+async def create_workout_set(session: AsyncSession, workout_set_data: WorkoutSetCreate, workout_exercise_id) -> WorkoutSet:
+    new_workout_set = WorkoutSet(
+        reps=workout_set_data.reps,
+        weight=workout_set_data.weight,
+        set_number=workout_set_data.set_number,
+        workout_exercise=workout_exercise_id
+    )
+
+    session.add(new_workout_set)
+    await session.commit()
+    return new_workout_set
+
+async def update_workout_set(
+    session: AsyncSession, set_id: int, update_data: WorkoutSetUpdate
+) -> WorkoutSet:
+
+    db_set = await session.get(WorkoutSet, set_id)
+    if not db_set:
+        raise WorkoutSetNotFoundError(set_id)
+
+    update_dict = update_data.model_dump(exclude_unset=True)
+
+    for k, v in update_dict.items():
+        setattr(db_set, k, v)
+
+    await session.commit()
+    await session.refresh(db_set)
+
+    return db_set
+
+async def delete_workout_set(session: AsyncSession, db_workout_set: WorkoutSet):
+    await session.delete(db_workout_set)
+    await session.commit()
+
+
+
+# -------Workout exercises
+
+async def get_workout_exercise_by_id(session: AsyncSession, workout_exercise_id) -> WorkoutExercise:
+    db_wk_e = await session.get(WorkoutExercise, workout_exercise_id)
+    if not db_wk_e:
+        raise WorkoutExerciseNotFoundError
+
+    return db_wk_e
+
+async def create_workout_exercise(
+        session: AsyncSession, exercise_id: int, workout_id: int, data: WorkoutExerciseCreate
+                                  ) -> WorkoutSet:
+    new_workout_exercise = WorkoutExercise(
+        workout_id=workout_id,
+        exercise_id=exercise_id,
+        order=data.order,
+        sets=[WorkoutSet(**set_in.model_dump()) for set_in in data.sets]
+    )
+
+    query = (
+        select(WorkoutExercise)
+        .options(selectinload(WorkoutExercise.sets))
+        .where(WorkoutExercise.id == new_workout_exercise.id)
+    )
+
+    result = await session.execute(query)
+    return result
+
+async def update_workout_exercise(
+        session: AsyncSession, workout_exercise_id: int, update_data: WorkoutExerciseUpdate) -> WorkoutExercise:
+
 
 
 
