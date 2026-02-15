@@ -98,7 +98,7 @@ async def create_workout_set(session: AsyncSession, workout_set_data: WorkoutSet
         reps=workout_set_data.reps,
         weight=workout_set_data.weight,
         set_number=workout_set_data.set_number,
-        workout_exercise=workout_exercise_id
+        workout_exercise_id=workout_exercise_id
     )
 
     session.add(new_workout_set)
@@ -134,19 +134,22 @@ async def delete_workout_set(session: AsyncSession, db_workout_set: WorkoutSet):
 async def get_workout_exercise_by_id(session: AsyncSession, workout_exercise_id) -> WorkoutExercise:
     db_wk_e = await session.get(WorkoutExercise, workout_exercise_id)
     if not db_wk_e:
-        raise WorkoutExerciseNotFoundError
+        raise WorkoutExerciseNotFoundError(workout_exercise_id)
 
     return db_wk_e
 
 async def create_workout_exercise(
         session: AsyncSession, exercise_id: int, workout_id: int, data: WorkoutExerciseCreate
-                                  ) -> WorkoutSet:
+                                  ) -> WorkoutExercise:
     new_workout_exercise = WorkoutExercise(
         workout_id=workout_id,
-        exercise_id=exercise_id,
+        exercise_id=data.exercise_id,
         order=data.order,
         sets=[WorkoutSet(**set_in.model_dump()) for set_in in data.sets]
     )
+
+    session.add(new_workout_exercise)
+    await session.commit()
 
     query = (
         select(WorkoutExercise)
@@ -155,14 +158,15 @@ async def create_workout_exercise(
     )
 
     result = await session.execute(query)
-    return result
+
+    return result.scalar_one_or_none()
 
 async def update_workout_exercise(
         session: AsyncSession, workout_exercise_id: int, update_data: WorkoutExerciseUpdate) -> WorkoutExercise:
     db_we = await session.get(WorkoutExercise, workout_exercise_id)
 
     if not db_we:
-        raise WorkoutExerciseNotFoundError
+        raise WorkoutExerciseNotFoundError(workout_exercise_id)
 
     update_dict = update_data.model_dump(exclude_unset=True)
 
