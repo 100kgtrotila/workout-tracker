@@ -3,6 +3,7 @@ from typing import List, Optional
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.modules.gym.exceptions import ExerciseNotFoundError
 from app.modules.gym.models import Exercise
 from app.modules.gym.schemas import ExerciseCreate, ExerciseUpdate
 
@@ -21,11 +22,20 @@ async def get_all_exercises(session: AsyncSession) -> List[Exercise]:
     result = await session.execute(query)
     return result.scalars().all()
 
-async def get_exercise_by_id(session: AsyncSession, exercise_id: int) -> Optional[Exercise]:
-    return await session.get(Exercise, exercise_id)
 
-async def update_exercise(session:AsyncSession, db_exercise: Exercise, update_data: ExerciseUpdate) -> Exercise:
+async def get_exercise_by_id(session: AsyncSession, exercise_id: int) -> Exercise:
+    db_exercise = await session.get(Exercise, exercise_id)
+    if not db_exercise:
+        raise ExerciseNotFoundError(exercise_id)
+    return db_exercise
+
+async def update_exercise(session:AsyncSession, exercise_id: int, update_data: ExerciseUpdate) -> Exercise:
     update_dict = update_data.model_dump(exclude_unset=True)
+
+    db_exercise = await session.get(exercise_id)
+
+    if not db_exercise:
+        raise ExerciseNotFoundError(exercise_id)
 
     for key, value in update_dict.items():
         setattr(db_exercise, key, value)
@@ -34,6 +44,11 @@ async def update_exercise(session:AsyncSession, db_exercise: Exercise, update_da
     await session.refresh(db_exercise)
     return db_exercise
 
-async def del_exercise(session: AsyncSession, db_exercise: Exercise) -> None:
+async def del_exercise(session: AsyncSession, exercise_id: int) -> None:
+    db_exercise = await session.get(exercise_id)
+
+    if not db_exercise:
+        raise ExerciseNotFoundError(exercise_id)
+
     await session.delete(db_exercise)
     await session.commit()
