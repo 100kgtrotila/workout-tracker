@@ -225,24 +225,26 @@ async def create_workout_exercise(
     return new_workout_exercise
 
 async def update_workout_exercise(
-        session: AsyncSession, workout_exercise_id: int, update_data: WorkoutExerciseUpdate) -> WorkoutExercise:
-    db_we = await session.get(WorkoutExercise, workout_exercise_id)
+        session: AsyncSession, workout_exercise_id: int,
+        user_id: int,
+        update_data: WorkoutExerciseUpdate) -> WorkoutExercise:
 
-    if not db_we:
-        raise WorkoutExerciseNotFoundError(workout_exercise_id)
+    db_workout_exercise = await get_workout_exercise_by_id(session, workout_exercise_id, user_id)
 
     update_dict = update_data.model_dump(exclude_unset=True)
 
     for k, v in update_dict.items():
-        setattr(db_we, k, v)
+        setattr(db_workout_exercise, k, v)
 
     await session.commit()
-    await session.refresh(db_we)
+    await session.refresh(db_workout_exercise)
 
-    return db_we
+    return db_workout_exercise
 
-async def delete_workout_exercise(session: AsyncSession, we: WorkoutExercise) -> None:
-    await session.delete(we)
+async def delete_workout_exercise(session: AsyncSession, workout_exercise_id: int, user_id: int) -> None:
+    db_workout_exercise = await get_workout_exercise_by_id(session, workout_exercise_id, user_id)
+
+    await session.delete(db_workout_exercise)
     await session.commit()
 
 
