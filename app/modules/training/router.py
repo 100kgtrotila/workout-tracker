@@ -22,12 +22,12 @@ router = APIRouter(prefix="/training", tags=["training"])
 
 #WORKOUTS
 
-@router.get("/workout/{workout_id}", response_model=WorkoutResponse, status_code=status.HTTP_200_OK)
+@router.get("/workouts/{workout_id}", response_model=WorkoutResponse, status_code=status.HTTP_200_OK)
 async def get_workout_by_id(workout_id: int, session: AsyncSession = Depends(get_db),
                             current_user: User = Depends(get_current_user)):
     return await service.get_workout_by_id(session, workout_id, current_user.id)
 
-@router.get("/workout/user", response_model=List[WorkoutResponse], status_code=status.HTTP_200_OK)
+@router.get("/workouts/user", response_model=List[WorkoutResponse], status_code=status.HTTP_200_OK)
 async def get_user_workouts(last_workout: int | None = None,
         limit: int = 20,
         session: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
@@ -40,19 +40,19 @@ async def get_user_workouts(last_workout: int | None = None,
 
     return workouts
 
-@router.post("/workout", response_model=WorkoutResponse, status_code=status.HTTP_201_CREATED)
+@router.post("/workouts", response_model=WorkoutResponse, status_code=status.HTTP_201_CREATED)
 async def create_workout(workout_data: WorkoutCreate, session: AsyncSession = Depends(get_db),
                          current_user: User = Depends(get_current_user)):
     return await service.create_workout(session, user_id=current_user.id, workout_in=workout_data)
 
-@router.patch("/workout/{workout_id}", response_model=WorkoutResponse, status_code=status.status.HTTP_200_OK)
+@router.patch("/workouts/{workout_id}", response_model=WorkoutResponse, status_code=status.HTTP_200_OK)
 async def update_workout(workout_id: int, update_data: WorkoutUpdate, session: AsyncSession = Depends(get_db),
                          current_user: User = Depends(get_current_user)):
 
     return await service.update_workout_info(session, workout_id=workout_id,
                                              update_data=update_data, user_id=current_user.id)
 
-@router.delete("/workout/{workout_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/workouts/{workout_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_workout(workout_id: int, session: AsyncSession = Depends(get_db),
                          current_user: User = Depends(get_current_user)):
 
@@ -61,11 +61,12 @@ async def delete_workout(workout_id: int, session: AsyncSession = Depends(get_db
 
 #WORKOUT SETS
 
-@router.get("/workout_set/{workout_set_id}", response_model=WorkoutSetResponse, status_code=status.HTTP_200_OK)
-async def get_workout_set(workout_set_id: int, session: AsyncSession = Depends(get_db)):
-    return await service.get_workout_set_by_id(session, workout_set_id)
+@router.get("/workout-sets/{workout_set_id}", response_model=WorkoutSetResponse, status_code=status.HTTP_200_OK)
+async def get_workout_set(workout_set_id: int, session: AsyncSession = Depends(get_db),
+                          current_user: User = Depends(get_current_user)):
+    return await service.get_workout_set_by_id(session, workout_set_id, user_id=current_user.id)
 
-@router.post("/workout_set/", response_model=WorkoutSetResponse, status_code=status.HTTP_201_CREATED)
+@router.post("/workout-sets/", response_model=WorkoutSetResponse, status_code=status.HTTP_201_CREATED)
 async def create_workout_set(workout_set_data: WorkoutSetCreate,
                              workout_exercise_id: int,
                              session: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
@@ -74,46 +75,46 @@ async def create_workout_set(workout_set_data: WorkoutSetCreate,
                                             workout_exercise_id=workout_exercise_id,
                                             user_id=current_user.id)
 
-@router.patch("/workout_set/{workout_set_id}", response_model=WorkoutSetResponse, status_code=status.HTTP_200_OK)
-async def update_workout_set(set_id: int, update_data: WorkoutSetUpdate,
+@router.patch("/workout-sets/{workout_set_id}", response_model=WorkoutSetResponse, status_code=status.HTTP_200_OK)
+async def update_workout_set(workout_set_id: int, update_data: WorkoutSetUpdate,
                              session: AsyncSession = Depends(get_db),
                              current_user = Depends(get_current_user)):
 
-    return await service.update_workout_set(session, set_id=set_id, update_data=update_data, user_id=current_user.id)
+    return await service.update_workout_set(session, set_id=workout_set_id, update_data=update_data, user_id=current_user.id)
 
-@router.delete("/workout_set/{workout_set_id}", status_code=status.HTTP_204_NO_CONTENT)
-async def delete_workout_set(set_id: int, session: AsyncSession = Depends(get_db),
+@router.delete("/workout-set/{workout_set_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_workout_set(workout_set_id: int, session: AsyncSession = Depends(get_db),
                              current_user: User = Depends(get_current_user)):
 
-    return await service.delete_workout_set(session, set_id=set_id, user_id=current_user.id)
+    return await service.delete_workout_set(session, set_id=workout_set_id, user_id=current_user.id)
 
 
 
 #WORKOUT EXERCISES
 
-@router.get("/workout_exercise/{workout_exercise_id}",
+@router.get("/workout-exercises/{workout_exercise_id}",
             response_model=WorkoutExerciseResponse, status_code=status.HTTP_200_OK)
 async def get_workout_exercise_by_id(workout_exercise_id: int, session: AsyncSession = Depends(get_db),
                                      current_user: User = Depends(get_current_user)):
     return await service.get_workout_exercise_by_id(session, workout_exercise_id=workout_exercise_id,
                                                     user_id=current_user.id)
 
-@router.post("/workout_exercise", response_model=WorkoutExerciseResponse, status_code=status.HTTP_201_CREATED)
+@router.post("/workou-exercises", response_model=WorkoutExerciseResponse, status_code=status.HTTP_201_CREATED)
 async def create_workout_exercise(workout_id: int, data: WorkoutExerciseCreate,
                                   session: AsyncSession = Depends(get_db),
                                   current_user: User = Depends(get_current_user)):
     return await service.create_workout_exercise(session, user_id=current_user.id, workout_id=workout_id, data=data)
 
-@router.patch("/workout_exercise/{workout_exercise_id}",
+@router.patch("/workout-exercises/{workout_exercise_id}",
               response_model=WorkoutExerciseResponse, status_code=status.HTTP_200_OK)
 async def update_workout_exercise(workout_exercise_id: int, data: WorkoutExerciseUpdate,
                                   session: AsyncSession = Depends(get_db),
                                   current_user: User = Depends(get_current_user)):
 
-    return await service.update_workout_set(session, workout_exercise_id=workout_exercise_id,
+    return await service.update_workout_exercise(session, workout_exercise_id=workout_exercise_id,
                                             update_data=data, user_id=current_user.id)
 
-@router.delete("/workout_exercise/{workout_exercise_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/workout-exercises/{workout_exercise_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_workout_exercise(workout_exercise_id: int, session: AsyncSession = Depends(get_db),
                                   current_user: User = Depends(get_current_user)):
 
