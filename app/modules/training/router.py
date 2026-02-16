@@ -66,7 +66,7 @@ async def get_workout_set(workout_set_id: int, session: AsyncSession = Depends(g
                           current_user: User = Depends(get_current_user)):
     return await service.get_workout_set_by_id(session, workout_set_id, user_id=current_user.id)
 
-@router.post("/workout-sets/", response_model=WorkoutSetResponse, status_code=status.HTTP_201_CREATED)
+@router.post("/workout-exercises/{workout_exercise_id}/sets", response_model=WorkoutSetResponse, status_code=status.HTTP_201_CREATED)
 async def create_workout_set(workout_set_data: WorkoutSetCreate,
                              workout_exercise_id: int,
                              session: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
@@ -82,7 +82,7 @@ async def update_workout_set(workout_set_id: int, update_data: WorkoutSetUpdate,
 
     return await service.update_workout_set(session, set_id=workout_set_id, update_data=update_data, user_id=current_user.id)
 
-@router.delete("/workout-set/{workout_set_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/workout-sets/{workout_set_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_workout_set(workout_set_id: int, session: AsyncSession = Depends(get_db),
                              current_user: User = Depends(get_current_user)):
 
@@ -99,7 +99,7 @@ async def get_workout_exercise_by_id(workout_exercise_id: int, session: AsyncSes
     return await service.get_workout_exercise_by_id(session, workout_exercise_id=workout_exercise_id,
                                                     user_id=current_user.id)
 
-@router.post("/workou-exercises", response_model=WorkoutExerciseResponse, status_code=status.HTTP_201_CREATED)
+@router.post("/workouts/{workout_id}/exercises", response_model=WorkoutExerciseResponse, status_code=status.HTTP_201_CREATED)
 async def create_workout_exercise(workout_id: int, data: WorkoutExerciseCreate,
                                   session: AsyncSession = Depends(get_db),
                                   current_user: User = Depends(get_current_user)):
