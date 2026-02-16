@@ -103,16 +103,43 @@ async def del_workout(session: AsyncSession, workout_id: int, user_id: int) -> N
 
 #---------WORK OUT SETS
 async def get_workout_set_by_id(
-    session: AsyncSession, workout_set_id: int
+    session: AsyncSession, workout_set_id: int,
+        user_id: int
 ) -> WorkoutSet:
-    db_workout_set = await session.get(WorkoutSet, workout_set_id)
+
+    query = (
+        select(WorkoutSet)
+        .join(WorkoutExercise, WorkoutSet.workout_exercise_id == WorkoutExercise.id)
+        .join(Workout, WorkoutExercise.workout_id == Workout.id)
+        .where(WorkoutSet.id == workout_set_id, Workout.user_id == user_id)
+    )
+
+    result = await session.execute(query)
+    db_workout_set = result.scalar_one_or_none()
 
     if not db_workout_set:
         raise WorkoutSetNotFoundError(workout_set_id)
 
     return db_workout_set
 
-async def create_workout_set(session: AsyncSession, workout_set_data: WorkoutSetCreate, workout_exercise_id) -> WorkoutSet:
+async def create_workout_set(session: AsyncSession,
+                             workout_set_data: WorkoutSetCreate,
+                             workout_exercise_id,
+                             user_id: int) -> WorkoutSet:
+
+    query_check = (
+        select(WorkoutExercise)
+        .join(Workout)
+        .where(WorkoutExercise.id == workout_exercise_id,
+               Workout.user_id == user_id)
+    )
+
+    result = await session.execute(query_check)
+    parent_exercise = result.scalar_one_or_none()
+
+    if not parent_exercise:
+        raise WorkoutExerciseNotFoundError(workout_exercise_id)
+
     new_workout_set = WorkoutSet(
         reps=workout_set_data.reps,
         weight=workout_set_data.weight,
@@ -122,6 +149,7 @@ async def create_workout_set(session: AsyncSession, workout_set_data: WorkoutSet
 
     session.add(new_workout_set)
     await session.commit()
+    await session.refresh(new_workout_set)
     return new_workout_set
 
 async def update_workout_set(
