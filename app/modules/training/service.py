@@ -14,6 +14,7 @@ from app.modules.training.schemas import WorkoutCreate, WorkoutSetUpdate, Workou
     WorkoutExerciseCreate, WorkoutExerciseUpdate
 
 
+#---------WORKOUTS
 async def get_workout_by_id(session: AsyncSession, workout_id: int, user_id: int) -> Workout:
     query = (
         select(Workout)
@@ -31,13 +32,19 @@ async def get_workout_by_id(session: AsyncSession, workout_id: int, user_id: int
     return workout
 
 
-async def get_user_workouts(session: AsyncSession, user_id: int) -> List[Workout]:
+async def get_user_workouts(session: AsyncSession, user_id: int,
+                            last_workout_id: int, limit: int = 20) -> List[Workout]:
     query = (
         select(Workout)
         .options(selectinload(Workout.exercises).selectinload(WorkoutExercise.sets))
-        .where(Workout.user_id==user_id)
-        .order_by(Workout.scheduled_at.desc())
+        .where(Workout.user_id == user_id)
+        .order_by(Workout.id.desc())
     )
+
+    if last_workout_id:
+        query = query.where(Workout.id < last_workout_id)
+
+    query = query.limit(limit)
 
     result = await session.execute(query)
 
@@ -66,7 +73,13 @@ async def create_workout(session: AsyncSession, user_id: int, workout_in: Workou
 
     return await get_workout_by_id(session, new_workout.id, user_id)
 
-async def update_workout_info(session: AsyncSession, db_workout: Workout, update_data: WorkoutUpdate) -> Workout:
+async def update_workout_info(session: AsyncSession, user_id: int ,workout_id: int, update_data: WorkoutUpdate) -> Workout:
+
+    db_workout = await get_workout_by_id(session, workout_id, user_id)
+
+    if not db_workout:
+        raise WorkoutNotFoundError(workout_id)
+
     update_dict = update_data.model_dump(exclude_unset=True)
 
     for key, value in update_dict.items():
@@ -76,7 +89,13 @@ async def update_workout_info(session: AsyncSession, db_workout: Workout, update
     await session.refresh(db_workout)
     return db_workout
 
-async def del_workout(session: AsyncSession, db_workout: Workout) -> None:
+async def del_workout(session: AsyncSession, workout_id: int, user_id: int) -> None:
+
+    db_workout = await get_workout_by_id(session, workout_id, user_id)
+
+    if not db_workout:
+        raise WorkoutNotFoundError(workout_id)
+
     await session.delete(db_workout)
     await session.commit()
 
