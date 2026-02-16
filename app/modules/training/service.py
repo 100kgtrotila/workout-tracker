@@ -153,10 +153,11 @@ async def create_workout_set(session: AsyncSession,
     return new_workout_set
 
 async def update_workout_set(
-    session: AsyncSession, set_id: int, update_data: WorkoutSetUpdate
+    session: AsyncSession, set_id: int, update_data: WorkoutSetUpdate,
+        user_id: int
 ) -> WorkoutSet:
 
-    db_set = await session.get(WorkoutSet, set_id)
+    db_set = await get_workout_set_by_id(session, workout_set_id=set_id, user_id=user_id)
     if not db_set:
         raise WorkoutSetNotFoundError(set_id)
 
@@ -170,8 +171,14 @@ async def update_workout_set(
 
     return db_set
 
-async def delete_workout_set(session: AsyncSession, db_workout_set: WorkoutSet):
-    await session.delete(db_workout_set)
+
+async def delete_workout_set(session: AsyncSession, set_id: int, user_id: int):
+    db_set = await get_workout_set_by_id(session, workout_set_id=set_id, user_id=user_id)
+
+    if not db_set:
+        raise WorkoutSetNotFoundError(set_id)
+
+    await session.delete(db_set)
     await session.commit()
 
 
