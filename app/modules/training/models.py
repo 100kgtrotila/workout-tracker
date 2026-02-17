@@ -22,6 +22,7 @@ class Workout(Base):
 
     user: Mapped["User"] = relationship(back_populates="workouts")
 
+
     exercises: Mapped[List["WorkoutExercise"]] = relationship(
         back_populates="workout",
         cascade="all, delete-orphan"
