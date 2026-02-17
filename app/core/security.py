@@ -1,13 +1,13 @@
-from datetime import datetime, timedelta, timezone
-
 import jwt
-from fastapi.params import Depends
+from datetime import datetime, timedelta, timezone
+from typing import Annotated
+
+from fastapi import Depends
 from fastapi.security import OAuth2PasswordBearer
 from jwt import InvalidTokenError
 from pwdlib import PasswordHash
-from select import select
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.sql.annotation import Annotated
 
 from app.core.config import settings
 from app.core.db import get_db
@@ -17,7 +17,7 @@ from app.modules.user.models import User
 password_hash = PasswordHash.recommended()
 DUMMY_HASH = password_hash.hash("playboicarti")
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="user/login")
 
 def verify_password(plain_password, hashed_password):
     return password_hash.verify(plain_password, hashed_password)
@@ -53,8 +53,9 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)], sessio
     except InvalidTokenError:
         raise UnauthorizedError("Your token is expired")
 
-    query = select(User).where(User.email==username)
-    user = await session.execute(query)
+    query = select(User).where(User.email == username)
+    result = await session.execute(query)
+    user = result.scalar_one_or_none()
 
     if not user:
         raise UnauthorizedError("User not found")
