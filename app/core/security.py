@@ -11,6 +11,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.config import settings
 from app.core.db import get_db
+from app.core.exceptions import ForbiddenError
 from app.modules.user.exceptions import UnauthorizedError
 from app.modules.user.models import User
 
@@ -18,6 +19,7 @@ password_hash = PasswordHash.recommended()
 DUMMY_HASH = password_hash.hash("playboicarti")
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="user/login")
+
 
 def verify_password(plain_password, hashed_password):
     return password_hash.verify(plain_password, hashed_password)
@@ -61,3 +63,15 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)], sessio
         raise UnauthorizedError("User not found")
 
     return user
+
+
+class RoleChecker:
+    def __init__(self, allowed_roles: list[str]):
+        self.allowed_roles = allowed_roles
+
+    def __call__(self, user: User = Depends(get_current_user)) -> User:
+        if user.role not in self.allowed_roles:
+            raise ForbiddenError(f"Role '{user.role}' is not sufficient")
+        return user
+
+admin_only = RoleChecker(["admin"])
