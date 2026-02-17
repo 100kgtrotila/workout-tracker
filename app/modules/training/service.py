@@ -88,8 +88,7 @@ async def update_workout_info(session: AsyncSession, user_id: int ,workout_id: i
         setattr(db_workout, key, value)
 
     await session.commit()
-    await session.refresh(db_workout)
-    return db_workout
+    return await get_workout_by_id(session, workout_id, user_id)
 
 async def del_workout(session: AsyncSession, workout_id: int, user_id: int) -> None:
 
@@ -188,6 +187,7 @@ async def get_workout_exercise_by_id(session: AsyncSession, workout_exercise_id,
         select(WorkoutExercise)
         .join(Workout, WorkoutExercise.workout_id == Workout.id)
         .where(WorkoutExercise.id == workout_exercise_id, Workout.user_id == user_id)
+        .options(selectinload(WorkoutExercise.sets))
     )
 
     result = await session.execute(query)
@@ -220,9 +220,15 @@ async def create_workout_exercise(
 
     session.add(new_workout_exercise)
     await session.commit()
-    await session.refresh(new_workout_exercise)
 
-    return new_workout_exercise
+    query = (
+        select(WorkoutExercise)
+        .where(WorkoutExercise.id == new_workout_exercise.id)
+        .options(selectinload(WorkoutExercise.sets))
+    )
+
+    result = await session.execute(query)
+    return result.scalar_one_or_none()
 
 async def update_workout_exercise(
         session: AsyncSession, workout_exercise_id: int,
@@ -237,9 +243,8 @@ async def update_workout_exercise(
         setattr(db_workout_exercise, k, v)
 
     await session.commit()
-    await session.refresh(db_workout_exercise)
 
-    return db_workout_exercise
+    return await get_workout_exercise_by_id(session, workout_exercise_id, user_id)
 
 async def delete_workout_exercise(session: AsyncSession, workout_exercise_id: int, user_id: int) -> None:
     db_workout_exercise = await get_workout_exercise_by_id(session, workout_exercise_id, user_id)
