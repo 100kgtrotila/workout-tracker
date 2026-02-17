@@ -1,8 +1,7 @@
-from dataclasses import Field
 from datetime import datetime
 from typing import Optional
 
-from pydantic import PositiveInt, EmailStr, BaseModel
+from pydantic import PositiveInt, EmailStr, BaseModel, Field
 
 from app.core.schemas import CustomModel
 
@@ -10,7 +9,7 @@ class UserBase(CustomModel):
     email: EmailStr
 
 class UserCreate(UserBase):
-    password: str = Field(min_lenght=6, max_lenght=128, description="User password")
+    password: str = Field(..., min_length=6, max_length=128, description="User password")
 
 class UserUpdate(UserBase):
     email: Optional[EmailStr]
