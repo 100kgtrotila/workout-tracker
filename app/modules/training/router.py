@@ -22,12 +22,7 @@ router = APIRouter(prefix="/training", tags=["training"])
 
 #WORKOUTS
 
-@router.get("/workouts/{workout_id}", response_model=WorkoutResponse, status_code=status.HTTP_200_OK)
-async def get_workout_by_id(workout_id: int, session: AsyncSession = Depends(get_db),
-                            current_user: User = Depends(get_current_user)):
-    return await service.get_workout_by_id(session, workout_id, current_user.id)
-
-@router.get("/workouts/user", response_model=List[WorkoutResponse], status_code=status.HTTP_200_OK)
+@router.get("/workouts/my", response_model=List[WorkoutResponse], status_code=status.HTTP_200_OK)
 async def get_user_workouts(last_workout: int | None = None,
         limit: int = 20,
         session: AsyncSession = Depends(get_db), current_user: User = Depends(get_current_user)):
@@ -39,6 +34,11 @@ async def get_user_workouts(last_workout: int | None = None,
         limit=limit)
 
     return workouts
+
+@router.get("/workouts/{workout_id}", response_model=WorkoutResponse, status_code=status.HTTP_200_OK)
+async def get_workout_by_id(workout_id: int, session: AsyncSession = Depends(get_db),
+                            current_user: User = Depends(get_current_user)):
+    return await service.get_workout_by_id(session, workout_id, current_user.id)
 
 @router.post("/workouts", response_model=WorkoutResponse, status_code=status.HTTP_201_CREATED)
 async def create_workout(workout_data: WorkoutCreate, session: AsyncSession = Depends(get_db),
