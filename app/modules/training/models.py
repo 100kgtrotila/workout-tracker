@@ -16,7 +16,7 @@ class Workout(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     name: Mapped[str] = mapped_column(String(100))
-    scheduled_at: Mapped[datetime] = mapped_column(DateTime)
+    scheduled_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     status: Mapped[WorkoutStatus] = mapped_column(default=WorkoutStatus.PLANNED)
     notes: Mapped[Optional[str]] = mapped_column(String(500))
 
