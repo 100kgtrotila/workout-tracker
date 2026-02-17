@@ -4,11 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2bb213e6-801d-4caa-a1c6-58409dd140b5" name="Changes" comment="Add custom exceptions for `Core` module&#10;&#10;- Introduced `AppError`, `NotFoundError`, and `BadRequestError` in `exceptions.py` to standardize error handling across the application.">
-      <change afterPath="$PROJECT_DIR$/app/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/modules/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/modules/training/service.py" afterDir="false" />
+    <list default="true" id="2bb213e6-801d-4caa-a1c6-58409dd140b5" name="Changes" comment="Register routers for `gym`, `user`, and `training` modules in FastAPI app.">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/core/security.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/security.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/modules/training/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/modules/training/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/modules/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/modules/user/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/modules/user/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/modules/user/router.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/modules/user/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/modules/user/schemas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv.lock" beforeDir="false" afterPath="$PROJECT_DIR$/uv.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,7 +23,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="24" />
+    <option name="cachedIndexableFilesCount" value="54" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -62,33 +69,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "FastAPI.workout-tracker.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "ai.playground.ignore.import.keys.banner.in.settings": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "D:/PyCharmProjects/workout-tracker/app/modules",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.intellij.python.ruff.RuffConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;FastAPI.workout-tracker.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/PyCharmProjects/workout-tracker/app/modules&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.python.ruff.RuffConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecapSpentCounter">
     <option name="endsOfQuotaMs" value="1771408835515" />
     <option name="spentUsd" value="0.08524325" />
@@ -145,15 +152,12 @@
       <updated>1770666725355</updated>
       <workItem from="1770666726393" duration="7282000" />
       <workItem from="1770758845745" duration="1160000" />
-      <workItem from="1771069312140" duration="19374000" />
-    </task>
-    <task id="LOCAL-00001" summary="Initial FastAPI project setup with `.gitignore`, dependencies, and basic configuration">
-      <option name="closed" value="true" />
-      <created>1770667797904</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1770667797904</updated>
+      <workItem from="1771069312140" duration="19384000" />
+      <workItem from="1771162128794" duration="6796000" />
+      <workItem from="1771170019671" duration="6942000" />
+      <workItem from="1771190101224" duration="5098000" />
+      <workItem from="1771239090170" duration="10138000" />
+      <workItem from="1771353773676" duration="2631000" />
     </task>
     <task id="LOCAL-00002" summary="Add configuration management and database setup  &#10;&#10;- Introduced `pydantic-settings` for environment-based configuration in `config.py`.  &#10;- Added placeholders for database configuration in `db.py`.  &#10;- Updated dependencies in `pyproject.toml` to include `pydantic-settings`.">
       <option name="closed" value="true" />
@@ -331,38 +335,268 @@
       <option name="project" value="LOCAL" />
       <updated>1771090250019</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Add CRUD service functions for `Training` module&#10;&#10;- Implemented functions to manage `Workout`, including `create_workout`, `get_workout_by_id`, `get_user_workouts`, `update_workout_info`, and `del_workout` in `service.py`. &#10;- Updated IDE workspace configuration.">
+      <option name="closed" value="true" />
+      <created>1771093418390</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1771093418390</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Add CRUD service functions for `WorkoutSet` and `WorkoutExercise`&#10;&#10;- Implemented `create_workout_set`, `update_workout_set`, `delete_workout_set`, and `get_workout_set_by_id` functions for managing workout sets.&#10;- Added `create_workout_exercise`, `update_workout_exercise`, and `get_workout_exercise_by_id` for handling workout exercises.&#10;- Corrected typo in `get_user_workouts` query (`ordery_by` → `order_by`).">
+      <option name="closed" value="true" />
+      <created>1771168233109</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1771168233109</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Add `delete_workout_exercise` function and enhance `update_workout_exercise` logic&#10;&#10;- Implemented `delete_workout_exercise` for removing workout exercises.&#10;- Improved `update_workout_exercise` to handle unset fields dynamically and raise `WorkoutExerciseNotFoundError` when necessary.">
+      <option name="closed" value="true" />
+      <created>1771168491742</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1771168491742</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Fix `workout_exercise_id` assignment in `create_workout_set` and enhance `WorkoutExercise` service methods&#10;&#10;- Corrected argument name in `create_workout_set` (from `workout_exercise` to `workout_exercise_id`).&#10;- Enhanced exception handling in `get_workout_exercise_by_id` and `update_workout_exercise` to include `workout_exercise_id` in error messages.&#10;- Adjusted `create_workout_exercise` implementation to set proper fields and ensure commit/return consistency.">
+      <option name="closed" value="true" />
+      <created>1771168889057</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1771168889057</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Add `UnauthorizedError` exception for user authentication&#10;&#10;- Introduced `UnauthorizedError` in `exceptions.py` to standardize credential validation errors.">
+      <option name="closed" value="true" />
+      <created>1771178010229</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1771178010229</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Add `Token` and `TokenData` schemas to support authentication responses">
+      <option name="closed" value="true" />
+      <created>1771178015609</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1771178015609</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Add core authentication utilities to `security.py`&#10;&#10;- Implement password hashing and validation functions.&#10;- Add `create_access_token` for JWT generation.&#10;- Introduce `get_current_user` to decode tokens and authenticate users.">
+      <option name="closed" value="true" />
+      <created>1771178022166</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1771178022166</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Add `authenticate_user` function to user service for credential validation&#10;&#10;- Implemented `authenticate_user` to verify user credentials using the database and password hashing logic.&#10;- Returns the user object on success or `False` on failure.">
+      <option name="closed" value="true" />
+      <created>1771178027863</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1771178027863</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Add `create_user` function to user service for registration and enhance `authenticate_user` logic&#10;&#10;- Implemented `create_user` to handle user registration, including validation, password hashing, and database insertion.&#10;- Updated `authenticate_user` to return `None` instead of `False` for invalid credentials.">
+      <option name="closed" value="true" />
+      <created>1771190686990</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1771190686990</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Add user authentication routes for registration and login&#10;&#10;- Introduced `/register` route to handle user registration.&#10;- Added `/login` route for user authentication and token generation using JWT.">
+      <option name="closed" value="true" />
+      <created>1771192635487</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1771192635487</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Remove unused `OAuth2PasswordBearer` import in `user/route.py`">
+      <option name="closed" value="true" />
+      <created>1771192650835</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1771192650835</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Adjust `/login` route to return `Token` schema instead of `UserResponse` for consistency with authentication design">
+      <option name="closed" value="true" />
+      <created>1771192686188</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1771192686188</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Restructure module routes by renaming `user/route.py` to `user/router.py` and introducing `gym/router.py`">
+      <option name="closed" value="true" />
+      <created>1771193279896</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1771193279896</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Add CRUD routes for managing exercises in `gym/router.py`">
+      <option name="closed" value="true" />
+      <created>1771194636503</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1771194636503</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Raise `ExerciseNotFoundError` in `get_exercise_by_id`, `update_exercise`, and `del_exercise` when the exercise is not found">
+      <option name="closed" value="true" />
+      <created>1771194641478</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1771194641478</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Add CRUD routes for managing workouts in `training/router.py`">
+      <option name="closed" value="true" />
+      <created>1771242406270</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1771242406270</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Update workout service functions to enhance filtering, validation, and error handling&#10;&#10;- Added `last_workout_id` and `limit` parameters to `get_user_workouts` for pagination.&#10;- Updated `update_workout_info` and `del_workout` to fetch workouts by ID and raise `WorkoutNotFoundError` when not found.">
+      <option name="closed" value="true" />
+      <created>1771242412779</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1771242412779</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Enhance workout set service functions with user-specific validation and refined error handling">
+      <option name="closed" value="true" />
+      <created>1771243653670</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1771243653670</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Enhance workout set service functions by adding user-specific validation for fetching and deleting workout sets">
+      <option name="closed" value="true" />
+      <created>1771244313071</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1771244313071</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Add CRUD routes for managing workout sets in `training/router.py`">
+      <option name="closed" value="true" />
+      <created>1771244777704</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1771244777704</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Remove redundant error handling in workout set service functions">
+      <option name="closed" value="true" />
+      <created>1771244782230</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1771244782230</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Enhance workout exercise service with user-specific validation, refined error handling, and support for exercise existence checks">
+      <option name="closed" value="true" />
+      <created>1771247430888</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1771247430888</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Add user-specific validation to workout exercise service functions and refine error handling">
+      <option name="closed" value="true" />
+      <created>1771247579795</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1771247579795</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Add CRUD routes for managing workout exercises in `training/router.py`">
+      <option name="closed" value="true" />
+      <created>1771248157592</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1771248157592</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Update workout, workout-set, and workout-exercise routes to use consistent pluralized endpoints">
+      <option name="closed" value="true" />
+      <created>1771248586540</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1771248586540</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Update workout-related routes to use nested and pluralized endpoints for consistency">
+      <option name="closed" value="true" />
+      <created>1771248693898</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1771248693898</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Register routers for `gym`, `user`, and `training` modules in FastAPI app.">
+      <option name="closed" value="true" />
+      <created>1771354351134</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1771354351135</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Initial FastAPI project setup with `.gitignore`, dependencies, and basic configuration" />
-    <MESSAGE value="Add configuration management and database setup  &#10;&#10;- Introduced `pydantic-settings` for environment-based configuration in `config.py`.  &#10;- Added placeholders for database configuration in `db.py`.  &#10;- Updated dependencies in `pyproject.toml` to include `pydantic-settings`." />
-    <MESSAGE value="Add Docker support with Dockerfile and docker-compose&#10;&#10;- Created a `Dockerfile` for containerizing the application.&#10;- Added `docker-compose.yml` for orchestrating services (FastAPI app, PostgreSQL, Redis)." />
-    <MESSAGE value="Update dependencies and implement asynchronous database setup&#10;&#10;- Added `asyncio` to dependencies for supporting asynchronous operations.&#10;- Implemented asynchronous database setup using `SQLAlchemy` with `AsyncSession` and `async_sessionmaker`." />
-    <MESSAGE value="Refactor database configuration to use dynamic `DATABASE_URL` generation from environment variables" />
-    <MESSAGE value="Add `Exercise` model and `MuscleGroup` enum for exercise management" />
-    <MESSAGE value="Add `User` model with fields for user management&#10;&#10;- Introduced a `User` model under `app/modules/user/models.py`." />
-    <MESSAGE value="Add `Workout` model and `WorkoutStatus` enum for workout management&#10;&#10;- Introduced a `Workout` model under `app/modules/workout/models.py`.&#10;- Created `WorkoutStatus` enum in `app/modules/workout/enums.py`." />
-    <MESSAGE value="Add `WorkoutExercise` and `WorkoutSet` models for detailed workout tracking&#10;&#10;- Introduced `WorkoutExercise` model in `app/modules/workout_exercises/models.py` to associate exercises with workouts.&#10;- Added `WorkoutSet` model in `app/modules/workout_sets/models.py` to track sets, reps, and weights for exercises.&#10;- Updated `Workout` model imports to optimize and remove unused dependencies." />
-    <MESSAGE value="Refactor module structure: consolidate workout-related models under `training` and exercise-related models under `gym` &#10;&#10;- Moved `Workout`, `WorkoutExercise`, and `WorkoutSet` models to `app/modules/training/models.py`. &#10;- Relocated `Exercise` model to `app/modules/gym/models.py`. &#10;- Updated imports and restructured enums accordingly. &#10;- Removed deprecated files and optimized relationships." />
-    <MESSAGE value="Update dependencies and Docker configuration  &#10;&#10;- Added `asyncpg` and `psycopg2` to `pyproject.toml` for PostgreSQL support.  &#10;- Adjusted `CMD` in `Dockerfile` for better compatibility with the virtual environment." />
-    <MESSAGE value="Update `.env` and Docker configuration&#10;&#10;- Introduced `.env` file for managing environment variables.&#10;- Updated `docker-compose.yml` to use `.env` for database configuration and added a volume for the Python virtual environment.&#10;- Replaced `psycopg2` with `psycopg2-binary` for simplified dependency management." />
-    <MESSAGE value="Update dependencies and improve database integration&#10;&#10;- Upgraded `FastAPI` and `Alembic` dependencies to their latest versions.&#10;- Updated `created_at` field in the `User` model to use `server_default` with `func.now()` for accurate timestamp management.&#10;- Enhanced `.venv` setup in IDE configuration for improved project consistency." />
-    <MESSAGE value="Add Alembic integration and initial database migration&#10;&#10;- Configured Alembic for managing database migrations, including `alembic.ini` and `env.py` setup.&#10;- Added an initial migration with `User`, `Exercise`, `Workout`, `WorkoutExercise`, and `WorkoutSet` tables." />
-    <MESSAGE value="Add `__init__.py` files for `gym`, `training`, and `user` modules to organize package structure" />
-    <MESSAGE value="Add IDE data source configuration and base schema model&#10;&#10;- Configured `.idea/dataSources.xml` for PostgreSQL `workout_db` connection in local development.&#10;- Introduced `CustomModel` in `schemas.py` with `ConfigDict` for `pydantic` configuration." />
-    <MESSAGE value="Add Pydantic schemas for `User` module&#10;&#10;- Introduced `UserBase`, `UserCreate`, `UserUpdate`, and `UserResponse` schemas in `schemas.py` for user data validation and serialization." />
-    <MESSAGE value="Add Pydantic schemas for `Training` module&#10;&#10;- Introduced schemas for `Workout`, `WorkoutExercise`, and `WorkoutSet` in `schemas.py` for validation and serialization.&#10;- Updated dependencies (`email-validator`, `ruff`) in `pyproject.toml` and IDE configurations." />
-    <MESSAGE value="Add Pydantic schemas for `Gym` module&#10;&#10;- Introduced schemas for `Exercise`, including `ExerciseBase`, `ExerciseCreate`, `ExerciseUpdate`, and `ExerciseResponse` in `schemas.py` for validation and serialization.&#10;- Updated `Exercise` model to refine relationships and remove unused comments." />
-    <MESSAGE value="Add CRUD service functions for `Gym` module&#10;&#10;- Implemented `create_exercise`, `get_all_exercises`, `get_exercise_by_id`, `update_exercise`, and `del_exercise` functions in `service.py` for managing `Exercise`. &#10;- Updated IDE workspace configuration." />
-    <MESSAGE value="Add custom exceptions for `Training` module&#10;&#10;- Introduced custom exceptions `WorkoutNotFoundError`, `WorkoutExerciseNotFoundError`, `WorkoutSetNotFoundError`, and `WorkoutAlreadyCompleted` in `exceptions.py` to improve error handling." />
-    <MESSAGE value="Add custom exceptions for `Core` module&#10;&#10;- Introduced `AppError`, `NotFoundError`, and `BadRequestError` in `exceptions.py` to standardize error handling across the application." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add custom exceptions for `Core` module&#10;&#10;- Introduced `AppError`, `NotFoundError`, and `BadRequestError` in `exceptions.py` to standardize error handling across the application." />
+    <MESSAGE value="Add `delete_workout_exercise` function and enhance `update_workout_exercise` logic&#10;&#10;- Implemented `delete_workout_exercise` for removing workout exercises.&#10;- Improved `update_workout_exercise` to handle unset fields dynamically and raise `WorkoutExerciseNotFoundError` when necessary." />
+    <MESSAGE value="Fix `workout_exercise_id` assignment in `create_workout_set` and enhance `WorkoutExercise` service methods&#10;&#10;- Corrected argument name in `create_workout_set` (from `workout_exercise` to `workout_exercise_id`).&#10;- Enhanced exception handling in `get_workout_exercise_by_id` and `update_workout_exercise` to include `workout_exercise_id` in error messages.&#10;- Adjusted `create_workout_exercise` implementation to set proper fields and ensure commit/return consistency." />
+    <MESSAGE value="Add `UnauthorizedError` exception for user authentication&#10;&#10;- Introduced `UnauthorizedError` in `exceptions.py` to standardize credential validation errors." />
+    <MESSAGE value="Add `Token` and `TokenData` schemas to support authentication responses" />
+    <MESSAGE value="Add core authentication utilities to `security.py`&#10;&#10;- Implement password hashing and validation functions.&#10;- Add `create_access_token` for JWT generation.&#10;- Introduce `get_current_user` to decode tokens and authenticate users." />
+    <MESSAGE value="Add `authenticate_user` function to user service for credential validation&#10;&#10;- Implemented `authenticate_user` to verify user credentials using the database and password hashing logic.&#10;- Returns the user object on success or `False` on failure." />
+    <MESSAGE value="Add `create_user` function to user service for registration and enhance `authenticate_user` logic&#10;&#10;- Implemented `create_user` to handle user registration, including validation, password hashing, and database insertion.&#10;- Updated `authenticate_user` to return `None` instead of `False` for invalid credentials." />
+    <MESSAGE value="Add user authentication routes for registration and login&#10;&#10;- Introduced `/register` route to handle user registration.&#10;- Added `/login` route for user authentication and token generation using JWT." />
+    <MESSAGE value="Remove unused `OAuth2PasswordBearer` import in `user/route.py`" />
+    <MESSAGE value="Adjust `/login` route to return `Token` schema instead of `UserResponse` for consistency with authentication design" />
+    <MESSAGE value="Restructure module routes by renaming `user/route.py` to `user/router.py` and introducing `gym/router.py`" />
+    <MESSAGE value="Add CRUD routes for managing exercises in `gym/router.py`" />
+    <MESSAGE value="Raise `ExerciseNotFoundError` in `get_exercise_by_id`, `update_exercise`, and `del_exercise` when the exercise is not found" />
+    <MESSAGE value="Add CRUD routes for managing workouts in `training/router.py`" />
+    <MESSAGE value="Update workout service functions to enhance filtering, validation, and error handling&#10;&#10;- Added `last_workout_id` and `limit` parameters to `get_user_workouts` for pagination.&#10;- Updated `update_workout_info` and `del_workout` to fetch workouts by ID and raise `WorkoutNotFoundError` when not found." />
+    <MESSAGE value="Enhance workout set service functions with user-specific validation and refined error handling" />
+    <MESSAGE value="Enhance workout set service functions by adding user-specific validation for fetching and deleting workout sets" />
+    <MESSAGE value="Add CRUD routes for managing workout sets in `training/router.py`" />
+    <MESSAGE value="Remove redundant error handling in workout set service functions" />
+    <MESSAGE value="Enhance workout exercise service with user-specific validation, refined error handling, and support for exercise existence checks" />
+    <MESSAGE value="Add user-specific validation to workout exercise service functions and refine error handling" />
+    <MESSAGE value="Add CRUD routes for managing workout exercises in `training/router.py`" />
+    <MESSAGE value="Update workout, workout-set, and workout-exercise routes to use consistent pluralized endpoints" />
+    <MESSAGE value="Update workout-related routes to use nested and pluralized endpoints for consistency" />
+    <MESSAGE value="Register routers for `gym`, `user`, and `training` modules in FastAPI app." />
+    <option name="LAST_COMMIT_MESSAGE" value="Register routers for `gym`, `user`, and `training` modules in FastAPI app." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/app/modules/training/models.py</url>
+          <line>53</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/workout_tracker$workout_tracker.coverage" NAME="workout-tracker Coverage Results" MODIFIED="1771069663216" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/workout_tracker$workout_tracker.coverage" NAME="workout-tracker Coverage Results" MODIFIED="1771356053750" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
