@@ -1,9 +1,11 @@
 import datetime
+from typing import List
 
 from sqlalchemy import String, func
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.core.db import Base
+from app.modules.training.models import Workout
 
 
 class User(Base):
@@ -14,4 +16,6 @@ class User(Base):
 
     password_hash: Mapped[str] = mapped_column(String(255))
     created_at: Mapped[datetime.datetime] = mapped_column(server_default=func.now())
+
+    workouts: Mapped[List["Workout"]] = relationship(back_populates="user", cascade="all, delete-orphan")
 
