@@ -20,7 +20,7 @@ async def login_user(
         form_data: Annotated[OAuth2PasswordRequestForm, Depends()],
         session: AsyncSession = Depends(get_db)):
 
-    user = await service.authenticate_user(session, form_data.email, form_data.password)
+    user = await service.authenticate_user(session, form_data.username, form_data.password)
 
     if not user:
         raise UnauthorizedError("Invalid email or password")
