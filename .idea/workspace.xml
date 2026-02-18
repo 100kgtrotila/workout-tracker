@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2bb213e6-801d-4caa-a1c6-58409dd140b5" name="Changes" comment="Refactor `training` service: replace unnecessary `refresh` calls with selective fetches and optimize query loading with `selectinload`">
-      <change afterPath="$PROJECT_DIR$/app/core/cache.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/modules/gym/service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/modules/gym/service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+    <list default="true" id="2bb213e6-801d-4caa-a1c6-58409dd140b5" name="Changes" comment="Add Alembic migrations: make `scheduled_at` timezone-aware and introduce `role` field in `users` table">
+      <change afterPath="$PROJECT_DIR$/test/conftest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/test_exercises.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/uv.lock" beforeDir="false" afterPath="$PROJECT_DIR$/uv.lock" afterDir="false" />
     </list>
@@ -66,33 +63,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;FastAPI.workout-tracker.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/PyCharmProjects/workout-tracker/app/modules&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.python.ruff.RuffConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "FastAPI.workout-tracker.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.conftest.executor": "Run",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ai.playground.ignore.import.keys.banner.in.settings": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "D:/PyCharmProjects/workout-tracker/app/modules",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.intellij.python.ruff.RuffConfigurable",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecapSpentCounter">
     <option name="endsOfQuotaMs" value="1771408835515" />
     <option name="spentUsd" value="0.08524325" />
@@ -113,7 +111,31 @@
       <recent name="D:\PyCharmProjects\workout-tracker\app" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.conftest">
+    <configuration name="conftest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="workout-tracker" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/conftest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="workout-tracker" type="Python.FastAPI">
       <option name="file" value="D:\PyCharmProjects\workout-tracker\app\main.py" />
       <module name="workout-tracker" />
@@ -131,6 +153,11 @@
       <option name="launchJavascriptDebuger" value="false" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.conftest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -156,39 +183,7 @@
       <workItem from="1771239090170" duration="10138000" />
       <workItem from="1771353773676" duration="2631000" />
       <workItem from="1771357055242" duration="13583000" />
-      <workItem from="1771419211680" duration="2431000" />
-    </task>
-    <task id="LOCAL-00015" summary="Add `__init__.py` files for `gym`, `training`, and `user` modules to organize package structure">
-      <option name="closed" value="true" />
-      <created>1771073707133</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1771073707133</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Add IDE data source configuration and base schema model&#10;&#10;- Configured `.idea/dataSources.xml` for PostgreSQL `workout_db` connection in local development.&#10;- Introduced `CustomModel` in `schemas.py` with `ConfigDict` for `pydantic` configuration.">
-      <option name="closed" value="true" />
-      <created>1771073932527</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1771073932527</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Add Pydantic schemas for `User` module&#10;&#10;- Introduced `UserBase`, `UserCreate`, `UserUpdate`, and `UserResponse` schemas in `schemas.py` for user data validation and serialization.">
-      <option name="closed" value="true" />
-      <created>1771074881559</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1771074881559</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Add Pydantic schemas for `Training` module&#10;&#10;- Introduced schemas for `Workout`, `WorkoutExercise`, and `WorkoutSet` in `schemas.py` for validation and serialization.&#10;- Updated dependencies (`email-validator`, `ruff`) in `pyproject.toml` and IDE configurations.">
-      <option name="closed" value="true" />
-      <created>1771080324279</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1771080324279</updated>
+      <workItem from="1771419211680" duration="5143000" />
     </task>
     <task id="LOCAL-00019" summary="Add Pydantic schemas for `Gym` module&#10;&#10;- Introduced schemas for `Exercise`, including `ExerciseBase`, `ExerciseCreate`, `ExerciseUpdate`, and `ExerciseResponse` in `schemas.py` for validation and serialization.&#10;- Updated `Exercise` model to refine relationships and remove unused comments.">
       <option name="closed" value="true" />
@@ -550,17 +545,45 @@
       <option name="project" value="LOCAL" />
       <updated>1771370938321</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="Refactor `Settings` class: replace PostgreSQL connection fields with `DATABASE_URL`, add `REDIS_URL`, and enhance configuration with computed fields and stricter validation">
+      <option name="closed" value="true" />
+      <created>1771421674559</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1771421674560</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Integrate caching into `gym` service using `cashews`: cache exercise queries and invalidate on updates.">
+      <option name="closed" value="true" />
+      <created>1771421682218</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1771421682218</updated>
+    </task>
+    <task id="LOCAL-00066" summary="Update `.env` and `docker-compose.yml` to unify environment variable management; add `cashews` and `redis` dependencies for caching">
+      <option name="closed" value="true" />
+      <created>1771421687077</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1771421687077</updated>
+    </task>
+    <task id="LOCAL-00067" summary="Add Alembic migrations: make `scheduled_at` timezone-aware and introduce `role` field in `users` table">
+      <option name="closed" value="true" />
+      <created>1771421695027</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1771421695027</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add CRUD routes for managing workouts in `training/router.py`" />
-    <MESSAGE value="Update workout service functions to enhance filtering, validation, and error handling&#10;&#10;- Added `last_workout_id` and `limit` parameters to `get_user_workouts` for pagination.&#10;- Updated `update_workout_info` and `del_workout` to fetch workouts by ID and raise `WorkoutNotFoundError` when not found." />
-    <MESSAGE value="Enhance workout set service functions with user-specific validation and refined error handling" />
-    <MESSAGE value="Enhance workout set service functions by adding user-specific validation for fetching and deleting workout sets" />
     <MESSAGE value="Add CRUD routes for managing workout sets in `training/router.py`" />
     <MESSAGE value="Remove redundant error handling in workout set service functions" />
     <MESSAGE value="Enhance workout exercise service with user-specific validation, refined error handling, and support for exercise existence checks" />
@@ -582,7 +605,11 @@
     <MESSAGE value="Restrict exercise routes to admin-only access using `admin_only` dependency" />
     <MESSAGE value="Add `RoleChecker` utility to enforce role-based access control" />
     <MESSAGE value="Refactor `training` service: replace unnecessary `refresh` calls with selective fetches and optimize query loading with `selectinload`" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor `training` service: replace unnecessary `refresh` calls with selective fetches and optimize query loading with `selectinload`" />
+    <MESSAGE value="Refactor `Settings` class: replace PostgreSQL connection fields with `DATABASE_URL`, add `REDIS_URL`, and enhance configuration with computed fields and stricter validation" />
+    <MESSAGE value="Integrate caching into `gym` service using `cashews`: cache exercise queries and invalidate on updates." />
+    <MESSAGE value="Update `.env` and `docker-compose.yml` to unify environment variable management; add `cashews` and `redis` dependencies for caching" />
+    <MESSAGE value="Add Alembic migrations: make `scheduled_at` timezone-aware and introduce `role` field in `users` table" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Alembic migrations: make `scheduled_at` timezone-aware and introduce `role` field in `users` table" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -596,6 +623,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/workout_tracker$conftest.coverage" NAME="conftest Coverage Results" MODIFIED="1771424333230" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/workout_tracker$workout_tracker.coverage" NAME="workout-tracker Coverage Results" MODIFIED="1771420170783" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
