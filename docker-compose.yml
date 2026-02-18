@@ -10,12 +10,13 @@ services:
     volumes:
       - .:/app
       - venv_data:/app/.venv
+    env_file:
+      - .env
     environment:
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=workout_db
-      - POSTGRES_HOST=db
-      - POSTGRES_PORT=5432
+      - DATABASE_URL=postgresql+asyncpg://user:password@db:5432/workout_db
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY=super_secret_key_at_least_32_chars_long_12345
+      - ALGORITHM=HS256
       - PYTHONPATH=/app
     depends_on:
       - db

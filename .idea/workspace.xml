@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2bb213e6-801d-4caa-a1c6-58409dd140b5" name="Changes" comment="Register routers for `gym`, `user`, and `training` modules in FastAPI app.">
+    <list default="true" id="2bb213e6-801d-4caa-a1c6-58409dd140b5" name="Changes" comment="Refactor `training` service: replace unnecessary `refresh` calls with selective fetches and optimize query loading with `selectinload`">
+      <change afterPath="$PROJECT_DIR$/app/core/cache.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/core/security.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/core/security.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/modules/training/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/modules/training/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/modules/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/modules/user/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/modules/user/router.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/modules/user/router.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/modules/user/schemas.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/modules/user/schemas.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/modules/gym/service.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/modules/gym/service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/uv.lock" beforeDir="false" afterPath="$PROJECT_DIR$/uv.lock" afterDir="false" />
     </list>
@@ -23,7 +20,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="54" />
+    <option name="cachedIndexableFilesCount" value="58" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -158,110 +155,8 @@
       <workItem from="1771190101224" duration="5098000" />
       <workItem from="1771239090170" duration="10138000" />
       <workItem from="1771353773676" duration="2631000" />
-    </task>
-    <task id="LOCAL-00002" summary="Add configuration management and database setup  &#10;&#10;- Introduced `pydantic-settings` for environment-based configuration in `config.py`.  &#10;- Added placeholders for database configuration in `db.py`.  &#10;- Updated dependencies in `pyproject.toml` to include `pydantic-settings`.">
-      <option name="closed" value="true" />
-      <created>1770668902519</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1770668902519</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Add Docker support with Dockerfile and docker-compose&#10;&#10;- Created a `Dockerfile` for containerizing the application.&#10;- Added `docker-compose.yml` for orchestrating services (FastAPI app, PostgreSQL, Redis).">
-      <option name="closed" value="true" />
-      <created>1770669978181</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1770669978181</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Update dependencies and implement asynchronous database setup&#10;&#10;- Added `asyncio` to dependencies for supporting asynchronous operations.&#10;- Implemented asynchronous database setup using `SQLAlchemy` with `AsyncSession` and `async_sessionmaker`.">
-      <option name="closed" value="true" />
-      <created>1770670867550</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1770670867550</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Refactor database configuration to use dynamic `DATABASE_URL` generation from environment variables">
-      <option name="closed" value="true" />
-      <created>1770671115008</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1770671115008</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Add `Exercise` model and `MuscleGroup` enum for exercise management">
-      <option name="closed" value="true" />
-      <created>1770672245385</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1770672245385</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Add `User` model with fields for user management&#10;&#10;- Introduced a `User` model under `app/modules/user/models.py`.">
-      <option name="closed" value="true" />
-      <created>1770672476292</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1770672476292</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Add `Workout` model and `WorkoutStatus` enum for workout management&#10;&#10;- Introduced a `Workout` model under `app/modules/workout/models.py`.&#10;- Created `WorkoutStatus` enum in `app/modules/workout/enums.py`.">
-      <option name="closed" value="true" />
-      <created>1770672901039</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1770672901039</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Add `WorkoutExercise` and `WorkoutSet` models for detailed workout tracking&#10;&#10;- Introduced `WorkoutExercise` model in `app/modules/workout_exercises/models.py` to associate exercises with workouts.&#10;- Added `WorkoutSet` model in `app/modules/workout_sets/models.py` to track sets, reps, and weights for exercises.&#10;- Updated `Workout` model imports to optimize and remove unused dependencies.">
-      <option name="closed" value="true" />
-      <created>1770673538283</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1770673538283</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Refactor module structure: consolidate workout-related models under `training` and exercise-related models under `gym` &#10;&#10;- Moved `Workout`, `WorkoutExercise`, and `WorkoutSet` models to `app/modules/training/models.py`. &#10;- Relocated `Exercise` model to `app/modules/gym/models.py`. &#10;- Updated imports and restructured enums accordingly. &#10;- Removed deprecated files and optimized relationships.">
-      <option name="closed" value="true" />
-      <created>1770674269428</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1770674269428</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Update dependencies and Docker configuration  &#10;&#10;- Added `asyncpg` and `psycopg2` to `pyproject.toml` for PostgreSQL support.  &#10;- Adjusted `CMD` in `Dockerfile` for better compatibility with the virtual environment.">
-      <option name="closed" value="true" />
-      <created>1770759524333</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1770759524333</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Update `.env` and Docker configuration&#10;&#10;- Introduced `.env` file for managing environment variables.&#10;- Updated `docker-compose.yml` to use `.env` for database configuration and added a volume for the Python virtual environment.&#10;- Replaced `psycopg2` with `psycopg2-binary` for simplified dependency management.">
-      <option name="closed" value="true" />
-      <created>1770760008694</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1770760008694</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Update dependencies and improve database integration&#10;&#10;- Upgraded `FastAPI` and `Alembic` dependencies to their latest versions.&#10;- Updated `created_at` field in the `User` model to use `server_default` with `func.now()` for accurate timestamp management.&#10;- Enhanced `.venv` setup in IDE configuration for improved project consistency.">
-      <option name="closed" value="true" />
-      <created>1771070904188</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1771070904188</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Add Alembic integration and initial database migration&#10;&#10;- Configured Alembic for managing database migrations, including `alembic.ini` and `env.py` setup.&#10;- Added an initial migration with `User`, `Exercise`, `Workout`, `WorkoutExercise`, and `WorkoutSet` tables.">
-      <option name="closed" value="true" />
-      <created>1771070923110</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1771070923110</updated>
+      <workItem from="1771357055242" duration="13583000" />
+      <workItem from="1771419211680" duration="2431000" />
     </task>
     <task id="LOCAL-00015" summary="Add `__init__.py` files for `gym`, `training`, and `user` modules to organize package structure">
       <option name="closed" value="true" />
@@ -551,26 +446,117 @@
       <option name="project" value="LOCAL" />
       <updated>1771354351135</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Fix incorrect usage of `form_data.email` in `authenticate_user` to `form_data.username`">
+      <option name="closed" value="true" />
+      <created>1771357825401</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1771357825401</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Reorder and rename workout routes: update `/workouts/user` to `/workouts/my`, adjust handler sequence.">
+      <option name="closed" value="true" />
+      <created>1771357830735</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1771357830735</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Make `scheduled_at` nullable and enable timezone awareness in `Workout` model">
+      <option name="closed" value="true" />
+      <created>1771359003512</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1771359003512</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Refactor database session handling to use FastAPI's `app.state` for session maker injection">
+      <option name="closed" value="true" />
+      <created>1771361770283</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1771361770283</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Refactor app initialization to use `lifespan` for database engine setup and dependency injection.">
+      <option name="closed" value="true" />
+      <created>1771361775982</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1771361775982</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Add custom exception hierarchy with HTTP status codes for better error handling">
+      <option name="closed" value="true" />
+      <created>1771365139887</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1771365139887</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Add global exception handlers for custom errors, validation, and unexpected exceptions">
+      <option name="closed" value="true" />
+      <created>1771365144019</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1771365144019</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Add exception handlers for custom app errors, validation errors, and unexpected exceptions">
+      <option name="closed" value="true" />
+      <created>1771365148756</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1771365148756</updated>
+    </task>
+    <task id="LOCAL-00059" summary="Add `role` field to `User` model with default value &quot;user&quot;">
+      <option name="closed" value="true" />
+      <created>1771367291616</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1771367291616</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Refactor `gym` service: reorder methods for clarity and reuse `get_exercise_by_id` helper function">
+      <option name="closed" value="true" />
+      <created>1771367297279</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1771367297279</updated>
+    </task>
+    <task id="LOCAL-00061" summary="Restrict exercise routes to admin-only access using `admin_only` dependency">
+      <option name="closed" value="true" />
+      <created>1771368977612</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1771368977612</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Add `RoleChecker` utility to enforce role-based access control">
+      <option name="closed" value="true" />
+      <created>1771368982605</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1771368982605</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Refactor `training` service: replace unnecessary `refresh` calls with selective fetches and optimize query loading with `selectinload`">
+      <option name="closed" value="true" />
+      <created>1771370938321</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1771370938321</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add `delete_workout_exercise` function and enhance `update_workout_exercise` logic&#10;&#10;- Implemented `delete_workout_exercise` for removing workout exercises.&#10;- Improved `update_workout_exercise` to handle unset fields dynamically and raise `WorkoutExerciseNotFoundError` when necessary." />
-    <MESSAGE value="Fix `workout_exercise_id` assignment in `create_workout_set` and enhance `WorkoutExercise` service methods&#10;&#10;- Corrected argument name in `create_workout_set` (from `workout_exercise` to `workout_exercise_id`).&#10;- Enhanced exception handling in `get_workout_exercise_by_id` and `update_workout_exercise` to include `workout_exercise_id` in error messages.&#10;- Adjusted `create_workout_exercise` implementation to set proper fields and ensure commit/return consistency." />
-    <MESSAGE value="Add `UnauthorizedError` exception for user authentication&#10;&#10;- Introduced `UnauthorizedError` in `exceptions.py` to standardize credential validation errors." />
-    <MESSAGE value="Add `Token` and `TokenData` schemas to support authentication responses" />
-    <MESSAGE value="Add core authentication utilities to `security.py`&#10;&#10;- Implement password hashing and validation functions.&#10;- Add `create_access_token` for JWT generation.&#10;- Introduce `get_current_user` to decode tokens and authenticate users." />
-    <MESSAGE value="Add `authenticate_user` function to user service for credential validation&#10;&#10;- Implemented `authenticate_user` to verify user credentials using the database and password hashing logic.&#10;- Returns the user object on success or `False` on failure." />
-    <MESSAGE value="Add `create_user` function to user service for registration and enhance `authenticate_user` logic&#10;&#10;- Implemented `create_user` to handle user registration, including validation, password hashing, and database insertion.&#10;- Updated `authenticate_user` to return `None` instead of `False` for invalid credentials." />
-    <MESSAGE value="Add user authentication routes for registration and login&#10;&#10;- Introduced `/register` route to handle user registration.&#10;- Added `/login` route for user authentication and token generation using JWT." />
-    <MESSAGE value="Remove unused `OAuth2PasswordBearer` import in `user/route.py`" />
-    <MESSAGE value="Adjust `/login` route to return `Token` schema instead of `UserResponse` for consistency with authentication design" />
-    <MESSAGE value="Restructure module routes by renaming `user/route.py` to `user/router.py` and introducing `gym/router.py`" />
-    <MESSAGE value="Add CRUD routes for managing exercises in `gym/router.py`" />
-    <MESSAGE value="Raise `ExerciseNotFoundError` in `get_exercise_by_id`, `update_exercise`, and `del_exercise` when the exercise is not found" />
     <MESSAGE value="Add CRUD routes for managing workouts in `training/router.py`" />
     <MESSAGE value="Update workout service functions to enhance filtering, validation, and error handling&#10;&#10;- Added `last_workout_id` and `limit` parameters to `get_user_workouts` for pagination.&#10;- Updated `update_workout_info` and `del_workout` to fetch workouts by ID and raise `WorkoutNotFoundError` when not found." />
     <MESSAGE value="Enhance workout set service functions with user-specific validation and refined error handling" />
@@ -583,7 +569,20 @@
     <MESSAGE value="Update workout, workout-set, and workout-exercise routes to use consistent pluralized endpoints" />
     <MESSAGE value="Update workout-related routes to use nested and pluralized endpoints for consistency" />
     <MESSAGE value="Register routers for `gym`, `user`, and `training` modules in FastAPI app." />
-    <option name="LAST_COMMIT_MESSAGE" value="Register routers for `gym`, `user`, and `training` modules in FastAPI app." />
+    <MESSAGE value="Fix incorrect usage of `form_data.email` in `authenticate_user` to `form_data.username`" />
+    <MESSAGE value="Reorder and rename workout routes: update `/workouts/user` to `/workouts/my`, adjust handler sequence." />
+    <MESSAGE value="Make `scheduled_at` nullable and enable timezone awareness in `Workout` model" />
+    <MESSAGE value="Refactor database session handling to use FastAPI's `app.state` for session maker injection" />
+    <MESSAGE value="Refactor app initialization to use `lifespan` for database engine setup and dependency injection." />
+    <MESSAGE value="Add custom exception hierarchy with HTTP status codes for better error handling" />
+    <MESSAGE value="Add global exception handlers for custom errors, validation, and unexpected exceptions" />
+    <MESSAGE value="Add exception handlers for custom app errors, validation errors, and unexpected exceptions" />
+    <MESSAGE value="Add `role` field to `User` model with default value &quot;user&quot;" />
+    <MESSAGE value="Refactor `gym` service: reorder methods for clarity and reuse `get_exercise_by_id` helper function" />
+    <MESSAGE value="Restrict exercise routes to admin-only access using `admin_only` dependency" />
+    <MESSAGE value="Add `RoleChecker` utility to enforce role-based access control" />
+    <MESSAGE value="Refactor `training` service: replace unnecessary `refresh` calls with selective fetches and optimize query loading with `selectinload`" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor `training` service: replace unnecessary `refresh` calls with selective fetches and optimize query loading with `selectinload`" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -597,6 +596,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/workout_tracker$workout_tracker.coverage" NAME="workout-tracker Coverage Results" MODIFIED="1771356053750" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/workout_tracker$workout_tracker.coverage" NAME="workout-tracker Coverage Results" MODIFIED="1771420170783" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

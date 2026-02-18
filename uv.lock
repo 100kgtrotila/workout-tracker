@@ -144,6 +144,20 @@ wheels = [
 ]
 
 [[package]]
+name = "cashews"
+version = "7.4.4"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/8c/5d/26eb556824a7ac9e24f751645961d2078b7b15be105f7fc39eda5308896f/cashews-7.4.4.tar.gz", hash = "sha256:dca761c60192bfe354abd6e9eb98d6f62c817e675df3fbe7d1bdfaa4303d1320", size = 92948, upload-time = "2025-12-06T22:31:56.187Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/bf/65/29d94c27dfa3cdb213ae62a328c6efe6cd37b888d334e90ecaa22eadafe9/cashews-7.4.4-py3-none-any.whl", hash = "sha256:d5b8fc3cb590ed388823388b972947fd5659e2a94109af107cb508a3240f5ef0", size = 79893, upload-time = "2025-12-06T22:31:53.918Z" },
+]
+
+[package.optional-dependencies]
+redis = [
+    { name = "redis" },
+]
+
+[[package]]
 name = "cffi"
 version = "2.0.0"
 source = { registry = "https://pypi.org/simple" }
@@ -583,6 +597,15 @@ wheels = [
 ]
 
 [[package]]
+name = "redis"
+version = "7.2.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/9f/32/6fac13a11e73e1bc67a2ae821a72bfe4c2d8c4c48f0267e4a952be0f1bae/redis-7.2.0.tar.gz", hash = "sha256:4dd5bf4bd4ae80510267f14185a15cba2a38666b941aff68cccf0256b51c1f26", size = 4901247, upload-time = "2026-02-16T17:16:22.797Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/86/cf/f6180b67f99688d83e15c84c5beda831d1d341e95872d224f87ccafafe61/redis-7.2.0-py3-none-any.whl", hash = "sha256:01f591f8598e483f1842d429e8ae3a820804566f1c73dca1b80e23af9fba0497", size = 394898, upload-time = "2026-02-16T17:16:20.693Z" },
+]
+
+[[package]]
 name = "ruff"
 version = "0.15.1"
 source = { registry = "https://pypi.org/simple" }
@@ -704,6 +727,7 @@ dependencies = [
     { name = "alembic" },
     { name = "asyncio" },
     { name = "asyncpg" },
+    { name = "cashews", extra = ["redis"] },
     { name = "email-validator" },
     { name = "fastapi" },
     { name = "psycopg2-binary" },
@@ -720,6 +744,7 @@ requires-dist = [
     { name = "alembic", specifier = "==1.18.4" },
     { name = "asyncio", specifier = ">=4.0.0" },
     { name = "asyncpg", specifier = "==0.31.0" },
+    { name = "cashews", extras = ["redis"], specifier = ">=7.4.4" },
     { name = "email-validator", specifier = "==2.3.0" },
     { name = "fastapi", specifier = "==0.129.0" },
     { name = "psycopg2-binary", specifier = "==2.9.11" },
