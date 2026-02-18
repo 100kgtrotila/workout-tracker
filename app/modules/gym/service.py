@@ -1,5 +1,6 @@
 from typing import List
 
+from app.core.cache import cache
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -8,12 +9,14 @@ from app.modules.gym.models import Exercise
 from app.modules.gym.schemas import ExerciseCreate, ExerciseUpdate
 
 
+@cache(ttl="1h", key="exercises:{exercise_id}", tags=["exercises"])
 async def get_exercise_by_id(session: AsyncSession, exercise_id: int) -> Exercise:
     db_exercise = await session.get(Exercise, exercise_id)
     if not db_exercise:
         raise ExerciseNotFoundError(exercise_id)
     return db_exercise
 
+@cache(ttl="1h", key="exercises:all", tags=["exercises"])
 async def get_all_exercises(session: AsyncSession) -> List[Exercise]:
     query = select(Exercise).order_by(Exercise.name)
     result = await session.execute(query)
@@ -25,6 +28,8 @@ async def create_exercise(session: AsyncSession, exercise_in: ExerciseCreate) ->
     session.add(new_exercise)
     await session.commit()
     await session.refresh(new_exercise)
+
+    await cache.delete_tags("exercises")
 
     return new_exercise
 
