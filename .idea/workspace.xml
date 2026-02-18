@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2bb213e6-801d-4caa-a1c6-58409dd140b5" name="Changes" comment="Add Alembic migrations: make `scheduled_at` timezone-aware and introduce `role` field in `users` table">
-      <change afterPath="$PROJECT_DIR$/test/conftest.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test_exercises.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uv.lock" beforeDir="false" afterPath="$PROJECT_DIR$/uv.lock" afterDir="false" />
+    <list default="true" id="2bb213e6-801d-4caa-a1c6-58409dd140b5" name="Changes" comment="Update `Dockerfile` to use Python 3.12 and add development dependencies in `pyproject.toml`">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,23 +179,7 @@
       <workItem from="1771239090170" duration="10138000" />
       <workItem from="1771353773676" duration="2631000" />
       <workItem from="1771357055242" duration="13583000" />
-      <workItem from="1771419211680" duration="5143000" />
-    </task>
-    <task id="LOCAL-00019" summary="Add Pydantic schemas for `Gym` module&#10;&#10;- Introduced schemas for `Exercise`, including `ExerciseBase`, `ExerciseCreate`, `ExerciseUpdate`, and `ExerciseResponse` in `schemas.py` for validation and serialization.&#10;- Updated `Exercise` model to refine relationships and remove unused comments.">
-      <option name="closed" value="true" />
-      <created>1771080942665</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1771080942665</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Add CRUD service functions for `Gym` module&#10;&#10;- Implemented `create_exercise`, `get_all_exercises`, `get_exercise_by_id`, `update_exercise`, and `del_exercise` functions in `service.py` for managing `Exercise`. &#10;- Updated IDE workspace configuration.">
-      <option name="closed" value="true" />
-      <created>1771085727737</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1771085727737</updated>
+      <workItem from="1771419211680" duration="5465000" />
     </task>
     <task id="LOCAL-00021" summary="Add custom exceptions for `Training` module&#10;&#10;- Introduced custom exceptions `WorkoutNotFoundError`, `WorkoutExerciseNotFoundError`, `WorkoutSetNotFoundError`, and `WorkoutAlreadyCompleted` in `exceptions.py` to improve error handling.">
       <option name="closed" value="true" />
@@ -577,15 +557,29 @@
       <option name="project" value="LOCAL" />
       <updated>1771421695027</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="Add test suite for exercise routes: fixtures for async tests, `client` setup, and CRUD tests">
+      <option name="closed" value="true" />
+      <created>1771424411055</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1771424411057</updated>
+    </task>
+    <task id="LOCAL-00069" summary="Update `Dockerfile` to use Python 3.12 and add development dependencies in `pyproject.toml`">
+      <option name="closed" value="true" />
+      <created>1771424416432</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1771424416432</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add CRUD routes for managing workout sets in `training/router.py`" />
-    <MESSAGE value="Remove redundant error handling in workout set service functions" />
     <MESSAGE value="Enhance workout exercise service with user-specific validation, refined error handling, and support for exercise existence checks" />
     <MESSAGE value="Add user-specific validation to workout exercise service functions and refine error handling" />
     <MESSAGE value="Add CRUD routes for managing workout exercises in `training/router.py`" />
@@ -609,7 +603,9 @@
     <MESSAGE value="Integrate caching into `gym` service using `cashews`: cache exercise queries and invalidate on updates." />
     <MESSAGE value="Update `.env` and `docker-compose.yml` to unify environment variable management; add `cashews` and `redis` dependencies for caching" />
     <MESSAGE value="Add Alembic migrations: make `scheduled_at` timezone-aware and introduce `role` field in `users` table" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Alembic migrations: make `scheduled_at` timezone-aware and introduce `role` field in `users` table" />
+    <MESSAGE value="Add test suite for exercise routes: fixtures for async tests, `client` setup, and CRUD tests" />
+    <MESSAGE value="Update `Dockerfile` to use Python 3.12 and add development dependencies in `pyproject.toml`" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update `Dockerfile` to use Python 3.12 and add development dependencies in `pyproject.toml`" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

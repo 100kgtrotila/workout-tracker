@@ -11,7 +11,8 @@
 **A full-featured async REST API for tracking gym workouts**  
 Plan sessions, log sets, and monitor your progress — all in one place.
 
-🔗 **Project URL:** [https://github.com/100kgtrotila/workout-tracker](https://github.com/100kgtrotila/workout-tracker)
+🔗 **GitHub:** [https://github.com/100kgtrotila/workout-tracker](https://github.com/100kgtrotila/workout-tracker)  
+📋 **Project Page:** [https://roadmap.sh/projects/fitness-workout-tracker](https://roadmap.sh/projects/fitness-workout-tracker)
 
 </div>
 
@@ -431,6 +432,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 Built with ❤️ using **FastAPI** · **PostgreSQL** · **Redis** · **Docker**
 
-🔗 **[https://github.com/100kgtrotila/workout-tracker](https://github.com/100kgtrotila/workout-tracker)**
+🔗 **[https://github.com/100kgtrotila/workout-tracker](https://github.com/100kgtrotila/workout-tracker)**  
+📋 **[https://roadmap.sh/projects/fitness-workout-tracker](https://roadmap.sh/projects/fitness-workout-tracker)**
 
 </div>
